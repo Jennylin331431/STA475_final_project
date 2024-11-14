@@ -1,0 +1,1249 @@
+#Patient Identifier	Race Category	Religion	Sex	Ethnicity Category	Overall Survival Status	Overall Survival (Months)	Pediatric Case Indicator	Met Location	Treatment between Pri-Met sample collection	Smoker
+#Identifier to uniquely specify a patient.	The text for reporting information about race.	Religion	Sex	The text for reporting information about ethnicity.	Overall patient survival status.	Overall survival in months since date of sequencing. If patient died before sequencing overall survival in months is set to '0'. If patient is alive and last contact date is before date of sequencing, overall survival in months is set to 'NA'	Indication on whether this case is a pediatric patient or not	Met Location	Treatment between Pri-Met sample collection	Smoker
+#STRING	STRING	STRING	STRING	STRING	STRING	NUMBER	STRING	STRING	STRING	STRING
+#0	1	0	1	1	1	1	0	1	1	1
+PATIENT_ID	RACE	RELIGION	SEX	ETHNICITY	OS_STATUS	OS_MONTHS	PED_IND	MET_LOCATION	TX_BET_PRI_MET_SAMPLE_COLLECTION	SMOKER
+P-0000096	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	16.11	No	Distant	Chemo	Former
+P-0000184	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	50.531	No	Distant	Chemo	Former
+P-0002311	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	79.857	No	Distant	Naive	Never
+P-0003279	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	51.518	No	Distant	Chemo	Never
+P-0003790	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	17.589	No	Ln	Naive	Never
+P-0004226	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	75.32	No	Distant	Chemo	Former
+P-0005225	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.822	No	Distant	Naive	Former
+P-0005266	BLACK OR AFRICAN AMERICAN	BAPTIST	Male	Non-Spanish; Non-Hispanic	DECEASED	32.548	No	Ln	Naive	Former
+P-0005284	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	49.019	No	Distant	Naive	Former
+P-0005916	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	71.54	No	Distant	Chemo	Never
+P-0006097	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	25.71	No	Distant	Both	Former
+P-0008168	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	42.214	No	Ln	Naive	Former
+P-0010079	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	64.142	No	Ln	Naive	Never
+P-0011187	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.97	No	Ln	Chemo	Former
+P-0012045	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	36.427	No	Distant	Naive	Never
+P-0012205	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	0	No	Distant	Naive	Never
+P-0013150	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	59.77	No	Distant	Naive	Former
+P-0013304	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	16.142	No	Ln	Naive	Never
+P-0015067	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	57.205	No	Ln	Naive	Former
+P-0015186	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	5.819	No	Distant	Naive	Former
+P-0015522	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.912	No	Distant	Naive	Former
+P-0015649	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.211	No	Distant	Naive	Never
+P-0015660	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	14.795	No	Distant	Chemo	Former
+P-0015663	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	23.047	No	Ln	Naive	Active
+P-0015920	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	55.266	No	Distant	Naive	Former
+P-0016915	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	13.348	No	Distant	Naive	Never
+P-0017472	WHITE	UNITARIAN	Male	Non-Spanish; Non-Hispanic	LIVING	53.523	No	Ln	Chemo	Former
+P-0019905	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	2.762	No	Distant	Chemo	Never
+P-0020835	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	18.51	No	Distant	Naive	Former
+P-0022950	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	6.411	No	Distant	Naive	Former
+P-0024797	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	28.044	No	Distant	Naive	Former
+P-0025128	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	42.838	No	Distant	Chemo	Former
+P-0026874	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	41.457	No	Distant	Naive	Never
+P-0027242	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.921	No	Distant	Chemo	Former
+P-0027619	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	40.8	No	Distant	Both	Former
+P-0029791	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	36.921	No	Distant	Naive	Former
+P-0031325	ASIAN-FAR EAST/INDIAN SUBCONT	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	36.921	No	Distant	Chemo	Former
+P-0032097	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.934	No	Distant	Chemo	Former
+P-0032284	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	13.052	No	Distant	Naive	Never
+P-0033364	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	14.499	No	Distant	Naive	Former
+P-0033427	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	0.888	No	Distant	Naive	Never
+P-0033436	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	34.389	No	Distant	Chemo	Former
+P-0033799	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	20.548	No	Distant	IO	Former
+P-0034694	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.712	No	Ln	Naive	Former
+P-0034906	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	32.482	No	Distant	Chemo	Former
+P-0035076	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	30.74	No	Distant	Both	Former
+P-0035247	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	DECEASED	15.879	No	Ln	Naive	Never
+P-0036408	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	26.466	No	Distant	Chemo	Former
+P-0036725	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	31.134	No	Ln	Chemo	Former
+P-0038879	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	27.058	No	Ln	Chemo	Former
+P-0039386	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	28.537	No	Ln	Chemo	Former
+P-0039458	OTHER	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	23.54	No	Ln	Naive	Former
+P-0039666	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	28.11	No	Distant	Naive	Former
+P-0039994	BLACK OR AFRICAN AMERICAN	BAPTIST	Male	Non-Spanish; Non-Hispanic	LIVING	27.978	No	Distant	Chemo	Former
+P-0040109	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.956	No	Distant	Chemo	Active
+P-0040533	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	27.452	No	Ln	Naive	Former
+P-0040586	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	19.825	No	Ln	Chemo	Active
+P-0040843	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	21.37	No	Distant	Chemo	Active
+P-0041531	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	26.663	No	Ln	IO	Former
+P-0041834	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	4.997	No	Distant	Both	Active
+P-0041879	ASIAN-FAR EAST/INDIAN SUBCONT	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	3.912	No	Distant	Chemo	Never
+P-0042865	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	12.164	No	Ln	IO	Former
+P-0043121	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	24.033	No	Ln	Chemo	Former
+P-0043891	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	5.129	No	Distant	Chemo	Former
+P-0044014	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	23.54	No	Distant	Naive	Former
+P-0044098	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	LIVING	23.967	No	Distant	Naive	Former
+P-0044491	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	18.74	No	Distant	Naive	Never
+P-0044554	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.542	No	Distant	Chemo	Never
+P-0044694	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	12.888	No	Distant	Naive	Former
+P-0045056	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	22.586	No	Distant	Naive	Never
+P-0045134	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	19.594	No	Distant	IO	Never
+P-0045300	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	10.422	No	Ln	Naive	Former
+P-0045437	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	20.186	No	Ln	Naive	Never
+P-0045449	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	12.822	No	Distant	Naive	Never
+P-0045543	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	21.994	No	Ln	Naive	Former
+P-0045695	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	23.112	No	Ln	Naive	Former
+P-0045861	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	16.274	No	Distant	Chemo	Former
+P-0046262	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	22.29	No	Ln	Chemo	Never
+P-0046593	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	5.951	Yes	Distant	Naive	Former
+P-0046605	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.638	No	Distant	Naive	Former
+P-0046752	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	20.778	No	Ln	Chemo	Former
+P-0047438	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	6.838	No	Ln	Naive	Former
+P-0047604	ASIAN-FAR EAST/INDIAN SUBCONT	MUSLIM	Female	Non-Spanish; Non-Hispanic	LIVING	15.682	No	Distant	Naive	Never
+P-0048225	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	20.679	No	Distant	Naive	Former
+P-0048306	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	20.384	No	Distant	Naive	Former
+P-0048454	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	19.594	No	Distant	Both	Former
+P-0048601	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	13.644	No	Distant	Chemo	Former
+P-0048662	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	DECEASED	12.131	No	Distant	Both	Former
+P-0048773	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	13.348	No	Distant	Chemo	Active
+P-0049440	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	14.63	No	Ln	Chemo	Former
+P-0049597	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	3.879	No	Ln	Naive	Former
+P-0049866	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	13.545	No	Distant	Chemo	Active
+P-0050150	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	17.129	No	Ln	Naive	Never
+P-0050975	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	17.03	No	Distant	Naive	Never
+P-0051149	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	17.49	No	Ln	Naive	Former
+P-0051239	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	17.655	No	Distant	Chemo	Never
+P-0052495	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	DECEASED	5.951	No	Distant	Chemo	Former
+P-0052853	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	16.767	No	Ln	Naive	Former
+P-0053218	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	1.184	No	Distant	Naive	Former
+P-0053877	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	15.255	No	Ln	Naive	Former
+P-0054808	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	12.263	No	Ln	Naive	Former
+P-0054868	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	14.301	No	Ln	Naive	Former
+P-0055953	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	12.395	No	Ln	Naive	Former
+P-0056296	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	12.164	No	Ln	Naive	Former
+P-0056332	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	12.099	No	Distant	Naive	Former
+P-0056466	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	7.068	No	Ln	Naive	Never
+P-0056503	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	11.408	No	Distant	Naive	Never
+P-0056813	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	10.948	No	Ln	Chemo	Former
+P-0056993	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	11.014	No	Distant	Naive	Former
+P-0057491	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	10.718	No	Ln	Naive	Former
+P-0058014	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	4.668	No	Ln	Chemo	Former
+P-0058637	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	8.252	No	Distant	Naive	Never
+P-0059576	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	5.195	No	Distant	Naive	Former
+P-0059938	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	7.956	No	Distant	Naive	Former
+P-0060422	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	5.03	No	Distant	IO	Never
+P-0060685	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	7.266	No	Ln	Naive	Former
+P-0061179	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	7.036	No	Distant	Naive	Never
+P-0062213	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	5.688	No	Distant	Naive	Never
+P-0003377	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	77.392	No			Active
+P-0004224	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	85.808	No			Never
+P-0004257	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	68.022	No			
+P-0007421	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	79.331	No			
+P-0010096	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	60.46	No			
+P-0015766	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	53.655	No			Former
+P-0015966	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	51.156	No			Active
+P-0016649	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	63.912	No			
+P-0018541	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	59.014	No			
+P-0022520	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	57.6	No			
+P-0024340	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	55.496	No			Never
+P-0026839	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	43.167	No			Never
+P-0026970	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	51.518	No			Never
+P-0029021	PT REFUSED TO ANSWER	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	50.005	No			
+P-0031619	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	38.236	No			
+P-0034651	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	26.466	No			Never
+P-0035999	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	12.329	No			
+P-0037307	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	14.729	No			
+P-0038398	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	9.633	No			Never
+P-0039507	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	38.762	No			Never
+P-0039885	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	34.455	No			Former
+P-0040411	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	37.315	No			Former
+P-0040700	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.896	No			Never
+P-0042869	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	24.986	No			
+P-0043061	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	4.011	No			
+P-0043298	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	25.512	No			Never
+P-0043332	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	34.126	No			Former
+P-0044204	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	27.321	No			Former
+P-0044322	PT REFUSED TO ANSWER	SIKH	Male	Non-Spanish; Non-Hispanic	DECEASED	11.704	No			
+P-0044518	WHITE	JEWISH	Male	Mexican (includes Chicano)	DECEASED	12.066	No			Never
+P-0045565	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	32.778	No			Former
+P-0045655	BLACK OR AFRICAN AMERICAN	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	33.238	No			
+P-0046092	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	12.296	No			Never
+P-0046580	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.121	No			Never
+P-0047206	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	32.351	No			
+P-0047668	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	31.989	No			
+P-0048009	WHITE	JEHOVAH WITNESS	Male	Unknown whether Spanish or not	LIVING	29.753	No	Distant	Naive	Former
+P-0048048	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	22.323	No			
+P-0048166	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	31.134	No			
+P-0048403	WHITE	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	19.101	No			Former
+P-0048590	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	31.233	No			Never
+P-0048655	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	30.838	No			Former
+P-0049436	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	LIVING	29.622	No			Never
+P-0050545	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	25.874	No			
+P-0050685	WHITE	BAPTIST	Female	Non-Spanish; Non-Hispanic	DECEASED	9.436	No			
+P-0050757	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	22.685	No			Former
+P-0050971	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	26.729	No			
+P-0051024	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	29.03	No			
+P-0051301	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	12.329	No			Former
+P-0051724	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	28.57	No			
+P-0052003	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	27.879	No			
+P-0052007	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.304	No			
+P-0052108	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	18.411	No			Never
+P-0053115	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	27.123	No			Former
+P-0053586	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	4.603	No			
+P-0053630	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.214	No			Never
+P-0054160	ASIAN-FAR EAST/INDIAN SUBCONT	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	26.334	No			
+P-0054299	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	26.466	No			Never
+P-0054350	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	21.468	No			
+P-0054353	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	25.019	No			
+P-0054779	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	25.348	No			Former
+P-0054909	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	25.282	No			Never
+P-0055128	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	18.279	No			
+P-0055551	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	4.208	No			
+P-0055621	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	22.225	No			
+P-0055749	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	12.23	No			
+P-0055936	PT REFUSED TO ANSWER	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	20.285	No			
+P-0056248	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	13.315	No			
+P-0058109	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	20.877	No			
+P-0058649	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	20.252	No			
+P-0058654	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	5.556	No			
+P-0059481	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	16.767	No			
+P-0059811	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	19.233	No			
+P-0060026	PT REFUSED TO ANSWER	JEWISH	Female	Unknown whether Spanish or not	DECEASED	12.362	No			
+P-0060822	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	5.984	No			
+P-0060903	WHITE	UNKNOWN	Female	Non-Spanish; Non-Hispanic	DECEASED	11.474	No			
+P-0061000	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	17.984	No			
+P-0061129	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	17.326	No			
+P-0061430	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	7.562	No			
+P-0061626	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	15.386	No			
+P-0061955	PT REFUSED TO ANSWER	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.759	No			
+P-0062032	WHITE	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	16.241	No			
+P-0062575	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	15.551	No			
+P-0063545	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.51	No			
+P-0064408	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	13.578	No			
+P-0064597	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	14.104	No			
+P-0064599	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	13.874	No			
+P-0064622	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.041	No			
+P-0064938	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	14.005	No			
+P-0064939	WHITE	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	13.578	No			
+P-0065336	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	13.085	No			
+P-0065344	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING		No			
+P-0065492	WHITE	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	5.951	No			
+P-0065500	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	12.855	No			
+P-0066249	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	8.91	No			
+P-0066293	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	12.099	No			
+P-0066679	OTHER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	9.6	No			
+P-0066818	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	4.34	No			
+P-0067089	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	3.781	No			
+P-0067637	ASIAN-FAR EAST/INDIAN SUBCONT	BUDDHIST	Male	Non-Spanish; Non-Hispanic	LIVING	11.573	No			
+P-0067727	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	11.014	No			
+P-0067776	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	4.405	No			
+P-0067920	WHITE	METHODIST	Female	Non-Spanish; Non-Hispanic	LIVING	11.54	No			
+P-0000034	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.263	No			Former
+P-0000043										Active
+P-0000056	BLACK OR AFRICAN AMERICAN	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.112	No			Active
+P-0000063	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	104.877	No			Never
+P-0000068	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	1.282	No			Former
+P-0000071	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	95.572	No			Active
+P-0000083	PT REFUSED TO ANSWER	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	101.03	Yes			Former
+P-0000084	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.115	No			Former
+P-0000085	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	9.731	No			Former
+P-0000088	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	18.411	No			Never
+P-0000222	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	41.326	No			Former
+P-0000268	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	104.219	No			Former
+P-0000290	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	101.49	No			Never
+P-0000307	NATIVE AMERICAN-AM IND/ALASKA	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	103.562	No			Active
+P-0000308	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	22.192	No			Never
+P-0000364	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	32.351	No			Former
+P-0000386	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.112	No			Former
+P-0000410	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.455	No			Former
+P-0000502	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.005	No			Former
+P-0000513	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.529	No			Former
+P-0000645	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	3.452	No			Former
+P-0000746	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	5.951	No			Former
+P-0000872	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.178	No			Former
+P-0000877	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	98.86	No			Never
+P-0000880	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	1.611	No			Former
+P-0000891	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	12.756	No			Never
+P-0000908	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	93.731	No			Never
+P-0000916	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	4.537	No			Former
+P-0001008	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	18.51	No			Former
+P-0001074	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	18.279	No			Former
+P-0001100	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	1.381	No			Never
+P-0001135	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	25.414	No			Never
+P-0001268	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	8.942	No			Former
+P-0001453	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	97.874	No			Former
+P-0001519	BLACK OR AFRICAN AMERICAN	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	LIVING	99.09	No			Active
+P-0001610	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	22.06	No			Active
+P-0001704	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	88.077	No			Former
+P-0001805	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.074	No			Never
+P-0001904	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	17.293	No			Active
+P-0002093	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	8.153	No			Active
+P-0002097	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	22.225	No			Never
+P-0002146	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.923	No			Former
+P-0002166	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	19.726	No			Former
+P-0002186	ASIAN-FAR EAST/INDIAN SUBCONT	HINDU	Male	Non-Spanish; Non-Hispanic	LIVING	91.562	No			Never
+P-0002292	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	14.268	No			Former
+P-0002472	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	15.847	No			Active
+P-0002576	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	DECEASED	17.556	No			Former
+P-0002581	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	89.227	No			Active
+P-0002584	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.663	No			Former
+P-0002586	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	93.633	No			Former
+P-0002599	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	86.433	No			Never
+P-0002610	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	1.611	No			Never
+P-0002659	WHITE	BAPTIST	Male	Non-Spanish; Non-Hispanic	LIVING	1.052	No			
+P-0002668	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	73.479	No			Former
+P-0002744	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.948	No			Former
+P-0002748	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.003	No			Active
+P-0002824	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	90.049	No			Never
+P-0002970	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	0.526	No			Former
+P-0002991	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	20.712	No			Active
+P-0003000	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	18.247	No			Former
+P-0003024	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.375	No			Former
+P-0003029	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	28.471	No			Former
+P-0003071	PT REFUSED TO ANSWER	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.674	No			Former
+P-0003097	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	6.411	No			Never
+P-0003131	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	50.236	No			Active
+P-0003140	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	20.942	No			Former
+P-0003238	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	94.882	No			Former
+P-0003257	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	92.055	No			Never
+P-0003261	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	94.422	No			Active
+P-0003352	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	14.86	No			Former
+P-0003356	WHITE	MORMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	86.926	No			Never
+P-0003362	WHITE	OTHER	Male	Non-Spanish; Non-Hispanic	DECEASED	20.088	No			Former
+P-0003367	WHITE	UNKNOWN	Female	Non-Spanish; Non-Hispanic	LIVING	87.386	No			Never
+P-0003370	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	88.537	No			Never
+P-0003373	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	3.945	No			Former
+P-0003388	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	91.364	No			Never
+P-0003391	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	92.844	No			Never
+P-0003396	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	89.589	No			Former
+P-0003403	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	88.438	No			Former
+P-0003404	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	93.896	No			Former
+P-0003408	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	88.438	No			Former
+P-0003433	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	84.723	No			Never
+P-0003434	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	69.403	No			Former
+P-0003436	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	59.277	No			Active
+P-0003438	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	92.811	No			Never
+P-0003507	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.225	No			Never
+P-0003555	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	89.49	No			Active
+P-0003561	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	70.981	No			Former
+P-0003566	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	84.394	No			Never
+P-0003596	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	11.277	No			Former
+P-0003677	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	82.225	No			Never
+P-0003681	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	85.907	No			Never
+P-0003682	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	83.803	No			Active
+P-0003690	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	89.852	No			Former
+P-0003698	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	85.973	No			Never
+P-0003788	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	91.167	No			Former
+P-0003809	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	46.323	No			Former
+P-0003817	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	70.422	No			Former
+P-0003823	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	91.759	No			Never
+P-0003824	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	55.233	No			Former
+P-0003826	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	0.526	No			Never
+P-0003832	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Unknown whether Spanish or not	DECEASED	60.657	No			Former
+P-0003841	PT REFUSED TO ANSWER	MUSLIM	Male	Non-Spanish; Non-Hispanic	DECEASED	44.581	No			
+P-0003844	WHITE	METHODIST	Female	Non-Spanish; Non-Hispanic	DECEASED	23.638	No			Former
+P-0003848	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	87.551	No			Former
+P-0003858	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	84.657	No			Former
+P-0003878	WHITE	NONE	Male	Unknown whether Spanish or not	DECEASED	46.586	No			Former
+P-0003920	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	90.509	No			Never
+P-0003942	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.934	No			Former
+P-0003955	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	33.14	No			Former
+P-0004008	OTHER	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	6.477	No			Never
+P-0004050	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	83.901	No			Former
+P-0004064	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.038	No			Active
+P-0004085	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0004137	ASIAN-FAR EAST/INDIAN SUBCONT	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	92.975	No			Active
+P-0004176	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	63.156	No			Former
+P-0004215	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	0.066	No			Former
+P-0004330	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	90.214	No			Former
+P-0004366	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	36.427	No			Former
+P-0004367	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	71.967	No			Former
+P-0004368	ASIAN-FAR EAST/INDIAN SUBCONT	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	22.948	No			Former
+P-0004387	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	32.548	No			Former
+P-0004393	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	87.057	No			Never
+P-0004419	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	88.274	No			Former
+P-0004420	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	73.907	No			Former
+P-0004424	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	90.97	No			Active
+P-0004426	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	87.978	No			Never
+P-0004444	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	88.241	No			Former
+P-0004484	WHITE	JEWISH	Male	Unknown whether Spanish or not	DECEASED	59.31	No			Never
+P-0004519	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	89.918	No			Former
+P-0004564	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	91.2	No			Former
+P-0004567	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	90.509	No			Former
+P-0004618	WHITE	METHODIST	Female	Non-Spanish; Non-Hispanic	DECEASED	9.929	No			Former
+P-0004622	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	8.679	No			Former
+P-0004703	WHITE	EPISCOPALIAN	Female	Non-Spanish; Non-Hispanic	LIVING	74.663	No			Former
+P-0004755	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	58.389	No			Active
+P-0004757	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	67.562	No			Former
+P-0004762	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	91.627	No			Never
+P-0004765	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	17.622	No			Never
+P-0004788	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	67.562	No			Never
+P-0004920	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	63.09	No			Active
+P-0004924	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	86.137	No			Former
+P-0004939	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	91.167	No			Active
+P-0004941	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	91.2	No			Former
+P-0004953	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	35.277	No			Former
+P-0004997	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	68.252	No			Active
+P-0005033	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	87.748	No			Active
+P-0005040	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	55.299	No			Active
+P-0005076	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	86.203	No			Never
+P-0005087	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	38.433	No			Former
+P-0005089	WHITE	JEWISH	Male	Unknown whether Spanish or not	LIVING	83.079	No			Never
+P-0005143	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	87.978	No			Active
+P-0005232	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	82.652	No			Never
+P-0005245	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	43.101	No			Former
+P-0005269	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	83.309	No			Former
+P-0005278	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	90.246	No			Former
+P-0005308	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.731	No			Former
+P-0005346	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	90.345	No			Former
+P-0005359	WHITE	NONE	Male	Unknown whether Spanish or not	LIVING		No			Former
+P-0005365	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	88.438	No			Never
+P-0005367	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	56.811	No			Active
+P-0005373	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	67.43	No			Former
+P-0005424	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	82.455	No			Former
+P-0005427	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	42.674	No			Former
+P-0005449	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	89.03	No			Never
+P-0005489	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	16.668	No			Former
+P-0005490	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.973	No			Former
+P-0005497	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	29.852	No			Former
+P-0005511	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	79.825	No			Former
+P-0005586	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	88.34	No			Former
+P-0005587	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	42.542	No			Never
+P-0005590	WHITE	JEWISH	Male	Unknown whether Spanish or not	LIVING	49.874	No			Former
+P-0005600	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	67.101	No			Active
+P-0005606	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	67.101	No			Never
+P-0005650	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	4.8	No			Former
+P-0005664	WHITE	JEWISH	Male	Unknown whether Spanish or not	LIVING	75.485	No			Former
+P-0005690	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	42.247	No			Former
+P-0005718	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.189	No			Former
+P-0005731	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	12.263	No			Former
+P-0005770	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	82.422	No			Former
+P-0005966	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	85.446	No			Former
+P-0006015	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	73.216	No			Former
+P-0006124	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	82.192	No			Former
+P-0006129	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	85.446	No			Never
+P-0006142	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	88.274	No			Active
+P-0006194	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	DECEASED	66.345	No			Never
+P-0006209	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	84.657	No			Never
+P-0006218	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	79.003	No			Active
+P-0006233	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	80.383	No			Never
+P-0006253	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	12.559	No			Never
+P-0006254	WHITE	CHRISTIAN ORTHODOX	Male	Unknown whether Spanish or not	LIVING	81.731	No			Former
+P-0006257	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	1.874	No			Active
+P-0006276	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	81.6	No			Never
+P-0006279	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	83.77	No			Never
+P-0006281	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	88.34	No			Former
+P-0006291	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	83.803	No			Former
+P-0006429	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	87.682	No			Former
+P-0006515	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	0.296	No			Never
+P-0006570	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	19.43	No			Never
+P-0006628	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	34.455	No			Former
+P-0006645	ASIAN-FAR EAST/INDIAN SUBCONT	BUDDHIST	Female	Non-Spanish; Non-Hispanic	DECEASED	56.153	No			Never
+P-0006697	WHITE	BAPTIST	Male	Non-Spanish; Non-Hispanic	LIVING	86.433	No			Active
+P-0006714	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	83.408	No			Never
+P-0006725	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	3.452	No			Never
+P-0006800	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	15.847	No			Former
+P-0006839	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	12.723	No			Former
+P-0006902	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	66.97	No			Never
+P-0006926	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	14.795	No			Never
+P-0006927	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	55.299	No			Former
+P-0006934										Active
+P-0006989	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	76.668	No			Former
+P-0007000	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	16.734	No			Never
+P-0007002	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	71.046	No			Former
+P-0007017	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.074	No			Former
+P-0007109	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0007224	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	82.488	No			Never
+P-0007285	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	34.093	No			Former
+P-0007312	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	59.803	No			Former
+P-0007356	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	84	No			Former
+P-0007623	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.512	No			Former
+P-0007656	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	85.611	No			Former
+P-0007661	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	78.477	No			Never
+P-0007682	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.441	No			Former
+P-0007755	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	30.411	No			Active
+P-0007966	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	80.548	No			Never
+P-0007994	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.019	No			Never
+P-0008062	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	33.074	No			Former
+P-0008106	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	78.115	No			Never
+P-0008190	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	85.085	No			Never
+P-0008234	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	84.362	No			Former
+P-0008240	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	DECEASED	45.304	No			Former
+P-0008290	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	84.23	No			Never
+P-0008311	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	5.096	No			Former
+P-0008336	ASIAN-FAR EAST/INDIAN SUBCONT	BUDDHIST	Male	Unknown whether Spanish or not	LIVING	79.594	No			Never
+P-0008425	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.074	No			Former
+P-0008439	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	DECEASED	9.107	No			Never
+P-0008575	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.375	No			Active
+P-0008718	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	38.466	No			Never
+P-0008734	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	84.164	No			Former
+P-0008834	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	66.312	No			Former
+P-0008835	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	81.173	No			Former
+P-0008867	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	80.351	No			Never
+P-0008880	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	83.145	No			Never
+P-0008968	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	70.225	No			Former
+P-0009005	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	9.238	No			Never
+P-0009029	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	83.573	No			Never
+P-0009263	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.995	No			Never
+P-0009371	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	54.773	No			Never
+P-0009414	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.323	No			Former
+P-0009618	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	44.088	No			Never
+P-0009743	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	3.978	No			Former
+P-0009876	PT REFUSED TO ANSWER	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0009910	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	2.827	No			Former
+P-0010094	PT REFUSED TO ANSWER	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.37	No			Former
+P-0010236	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	81.271	No			Former
+P-0010271	PT REFUSED TO ANSWER	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	10.093	No			Former
+P-0010316	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	81.534	No			Former
+P-0010491	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	2.63	No			Never
+P-0010531	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	80.515	No			Never
+P-0010582	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	71.605	No			Former
+P-0010783	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	80.318	No			Former
+P-0010838	WHITE	JEWISH	Female	Unknown whether Spanish or not	DECEASED	65.096	No			Former
+P-0010921	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	12.986	No			Active
+P-0011141	BLACK OR AFRICAN AMERICAN	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	72.986	No			Never
+P-0011241	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.334	No			Never
+P-0011245	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.74	No			Former
+P-0011439	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.427	No			Former
+P-0011523	PT REFUSED TO ANSWER	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	65.293	No			Never
+P-0011524	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	2.005	No			Former
+P-0012060	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	21.337	No			Never
+P-0012320	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	22.159	No			Former
+P-0012325	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	69.041	No			Former
+P-0012557	WHITE	EPISCOPALIAN	Female	Non-Spanish; Non-Hispanic	LIVING	60.164	No			Former
+P-0012663	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	73.94	No			Former
+P-0012706	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	77.951	No			Former
+P-0012790	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	3.255	No			Former
+P-0012840	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	13.71	No			Former
+P-0012870	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	7.529	No			Former
+P-0012987	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	74.236	No			Former
+P-0013077	ASIAN-FAR EAST/INDIAN SUBCONT	BUDDHIST	Female	Non-Spanish; Non-Hispanic	LIVING	67.299	No			Never
+P-0013283	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	0.658	No			Former
+P-0013712	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	64.142	No			Active
+P-0013873	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	12.855	No			Never
+P-0014199	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	74.268	No			Never
+P-0014421	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	75.452	No			Never
+P-0014470	ASIAN-FAR EAST/INDIAN SUBCONT	HINDU	Male	Non-Spanish; Non-Hispanic	LIVING	74.4	No			Never
+P-0014507	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	74.86	No			Former
+P-0014648	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	24.69	No			Never
+P-0014815	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	0.986	No			Active
+P-0014909	WHITE	METHODIST	Male	Non-Spanish; Non-Hispanic	DECEASED	0	No			Never
+P-0015137	WHITE	METHODIST	Male	Non-Spanish; Non-Hispanic	DECEASED	12.329	No			Former
+P-0015199	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	28.833	No			Active
+P-0015267	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	39.288	No			Former
+P-0015501	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	8.745	No			Active
+P-0015560	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	3.518	No			Never
+P-0015564	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0015615	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Cuban	DECEASED	17.096	No			Active
+P-0015661	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	23.573	No			Former
+P-0015671	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	63.025	No			Never
+P-0015716	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	66.674	No			Never
+P-0015773	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	39.353	No			Never
+P-0015866	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	64.603	No			Former
+P-0015886	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	38.499	No			Never
+P-0015923	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	36.329	No			Former
+P-0015965	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	3.518	No			Former
+P-0016178	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	72.986	No			Never
+P-0016208	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	LIVING	71.868	No			Never
+P-0016251	PT REFUSED TO ANSWER	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	66.51	No			Never
+P-0016402	ASIAN-FAR EAST/INDIAN SUBCONT	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0	No			Former
+P-0016455	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	42.477	No			Former
+P-0016546	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	9.666	No			Former
+P-0016618	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	70.783	No			Former
+P-0016624	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	72.263	No			Never
+P-0016826	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	38.301	No			Former
+P-0016855	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	38.236	No			Former
+P-0016925	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	8.712	No			Never
+P-0016989	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	67.331	No			Never
+P-0017068	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	68.877	No			Former
+P-0017071	PT REFUSED TO ANSWER	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	6.016	No			Never
+P-0017107	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	16.077	No			Former
+P-0017208	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	2.466	No			Never
+P-0017241	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.77	No			Former
+P-0017712	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	2.696	No			Former
+P-0017725	WHITE	JEWISH	Male	Unknown whether Spanish or not	LIVING		No			Never
+P-0018028	WHITE	CATHOLIC/ROMAN	Male	Puerto Rican	DECEASED	1.973	No			Never
+P-0018142	WHITE	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	25.479	No			Never
+P-0018186	PT REFUSED TO ANSWER	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	19.923	No			Never
+P-0018216	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	19.331	No			Never
+P-0018270	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	10.751	No			Former
+P-0018934	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	46.257	No			Former
+P-0018941	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	60.592	No			Former
+P-0018970	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	69.074	No			Former
+P-0019005	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	67.66	No			Never
+P-0019007	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	67.89	No			Never
+P-0019242	BLACK OR AFRICAN AMERICAN	METHODIST	Female	Non-Spanish; Non-Hispanic	LIVING	68.942	No			Former
+P-0019381	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	13.611	No			Never
+P-0019445	WHITE	BAPTIST	Female	Non-Spanish; Non-Hispanic	DECEASED	5.753	No			Never
+P-0019468	ASIAN-FAR EAST/INDIAN SUBCONT	HINDU	Male	Non-Spanish; Non-Hispanic	LIVING	64.701	No			Never
+P-0019515	BLACK OR AFRICAN AMERICAN	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	68.515	No			Former
+P-0019517	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	65.753	No			Former
+P-0019712	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0019771	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	DECEASED	10.027	Yes			Former
+P-0019850	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	62.137	No			Never
+P-0020036	PT REFUSED TO ANSWER	UNKNOWN	Female	Non-Spanish; Non-Hispanic	LIVING	63.255	No			Former
+P-0020047	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	63.912	No			Former
+P-0020122	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	67.233	No			Active
+P-0020167	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.512	No			Active
+P-0020240	ASIAN-FAR EAST/INDIAN SUBCONT	BUDDHIST	Female	Non-Spanish; Non-Hispanic	LIVING	60	No			Never
+P-0020243	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	53.984	No			Former
+P-0020312	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	61.94	No			Active
+P-0020321	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	61.808	No			Former
+P-0020351	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	56.12	No			Never
+P-0020592	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	34.356	No			Former
+P-0020796	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	5.688	No			Active
+P-0020832	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	64.603	No			Former
+P-0020836	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	17.49	No			Former
+P-0020842	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	43.825	No			Never
+P-0020877	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	53.622	No			Former
+P-0020904	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	64.603	No			Active
+P-0020914	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	56.383	No			Never
+P-0020991	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	64.373	No			Former
+P-0020992	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	61.808	No			Active
+P-0020995	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	1.677	No			Former
+P-0021005	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	63.551	No			Former
+P-0021006	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	61.183	No			Former
+P-0021013	WHITE	GREEK ORTHODOX	Female	Non-Spanish; Non-Hispanic	DECEASED	31.825	No			Former
+P-0021079	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	58.29	No			Former
+P-0021176	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	63.978	No			Former
+P-0021255	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.019	No			Former
+P-0021267	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	65.556	No			Former
+P-0021268	ASIAN-FAR EAST/INDIAN SUBCONT	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	61.611	No			Former
+P-0021484	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	65.622	No			Former
+P-0021503	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	5.195	No			Former
+P-0021527	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.027	No			Former
+P-0021528	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	29.523	No			Former
+P-0021532	BLACK OR AFRICAN AMERICAN	METHODIST	Female	Non-Spanish; Non-Hispanic	DECEASED	32.285	No			Never
+P-0021533	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	57.83	No			Never
+P-0021549	OTHER	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	16.373	No			Never
+P-0021605	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	65.063	No			Former
+P-0021608	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	22.521	No			Never
+P-0021642	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	63.781	No			Never
+P-0021715	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	54.575	No			Former
+P-0021848	WHITE	SPIRITUAL NOT RELIG	Male	Non-Spanish; Non-Hispanic	DECEASED	1.118	No			Former
+P-0021930	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0022000	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	64.208	No			Former
+P-0022068	WHITE	JEWISH	Female	Unknown whether Spanish or not	DECEASED	11.605	No			Never
+P-0022124	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	60.92	No			Never
+P-0022194	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	64.471	No			Never
+P-0022244	PT REFUSED TO ANSWER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	54.608	No			Never
+P-0022256	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	57.6	No			Never
+P-0022314	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	62.137	No			Never
+P-0022328	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	60.855	No			Never
+P-0022434	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	51.32	No			Former
+P-0022436	PT REFUSED TO ANSWER	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	63.518	No			Never
+P-0022479	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	11.474	No			Former
+P-0022483	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	43.66	No			Active
+P-0022534	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	23.54	No			Never
+P-0022605	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	62.794	No			Never
+P-0022714	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	13.118	No			Former
+P-0022744	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	1.381	No			Former
+P-0023001	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	56.285	No			Former
+P-0023002	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	45.994	No			Never
+P-0023024	WHITE	BAPTIST	Male	Non-Spanish; Non-Hispanic	LIVING	55.397	No			Former
+P-0023053	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	59.047	No			Never
+P-0023084	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	62.17	No			Former
+P-0023099	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	DECEASED	13.512	No			Former
+P-0023172	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	61.183	No			Former
+P-0023174	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	61.447	No			Never
+P-0023185	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	61.742	No			Never
+P-0023261	WHITE	CATHOLIC/ROMAN	Female	Unknown whether Spanish or not	DECEASED	0.395	No			Never
+P-0023403	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	62.367	No			Never
+P-0023472	OTHER	MUSLIM	Female	Non-Spanish; Non-Hispanic	LIVING	1.381	No			Never
+P-0023606	ASIAN-FAR EAST/INDIAN SUBCONT	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	57.764	No			Former
+P-0023716	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	61.578	No			Former
+P-0023746	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	60.657	No			Former
+P-0023853	WHITE	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	38.729	No			Former
+P-0023918	WHITE	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	37.907	No			Never
+P-0024039	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	61.644	No			Former
+P-0024259	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	0	No			Former
+P-0024353	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	58.455	No			Never
+P-0024564	NO VALUE ENTERED	UNKNOWN	Female		LIVING		No			
+P-0024615	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	60.756	No			Former
+P-0024795	BLACK OR AFRICAN AMERICAN	BAPTIST	Female	Non-Spanish; Non-Hispanic	LIVING	58.586	No			Former
+P-0024827	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	42.345	No			Former
+P-0025079	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	10.882	No			Former
+P-0025120	WHITE	OTHER	Female	Non-Spanish; Non-Hispanic	DECEASED	7.858	No			Active
+P-0025174	ASIAN-FAR EAST/INDIAN SUBCONT	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	61.381	No			Never
+P-0025336	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	57.567	No			Former
+P-0025407	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	51.386	No			Never
+P-0025529	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	59.704	No			Never
+P-0025555	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	18.477	No			Former
+P-0025607	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	43.463	No			Never
+P-0025613	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0025703	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	59.803	No			Never
+P-0025827	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	3.682	No			Never
+P-0025959	WHITE	JEWISH	Female	Unknown whether Spanish or not	LIVING	15.09	No			Former
+P-0026205	WHITE	JEWISH	Male	Unknown whether Spanish or not	LIVING	56.219	No			Former
+P-0026207	PT REFUSED TO ANSWER	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	59.408	No			Former
+P-0026440	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	53.26	No			Active
+P-0026518	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	59.671	No			Former
+P-0026526	WHITE	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	51.025	No			Former
+P-0026651	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	56.614	No			Former
+P-0026723	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	12.066	No			Never
+P-0026783	PT REFUSED TO ANSWER	PENTECOSTAL	Female	Non-Spanish; Non-Hispanic	DECEASED	3.912	No			Former
+P-0026869	WHITE	OTHER	Female	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0027027	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	52.537	No			Former
+P-0027534	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	7.036	No			Active
+P-0027727	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	50.301	No			Never
+P-0028121	BLACK OR AFRICAN AMERICAN	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	44.975	No			Former
+P-0028454	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	53.852	Yes			Active
+P-0028679	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	46.225	No			Former
+P-0028777	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	25.742	No			Former
+P-0029130	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	DECEASED	23.342	No			Former
+P-0029227	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	54.608	No			Never
+P-0029408	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	28.701	No			Former
+P-0029539	BLACK OR AFRICAN AMERICAN	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	49.216	No			Never
+P-0029610	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.408	No			Former
+P-0029733	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	16.767	No			Former
+P-0029742	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	52.668	No			Never
+P-0029852	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	DECEASED	41.721	No			Former
+P-0029930	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.447	No			Former
+P-0030092	WHITE	NONE	Male		LIVING	55.134	No			Never
+P-0030105	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.567	No			Former
+P-0030133	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	55.693	No			Active
+P-0030192	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	28.8	No			Never
+P-0030226	BLACK OR AFRICAN AMERICAN	BAPTIST	Female	Non-Spanish; Non-Hispanic	DECEASED	5.359	No			Former
+P-0030348	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.808	No			Former
+P-0030389	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	55.463	No			Former
+P-0030394	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	52.208	No			Former
+P-0030508	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	39.189	No			Former
+P-0030520	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0030803	WHITE	NONE	Male	Unknown whether Spanish or not	LIVING	35.868	No			Former
+P-0030843	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	54.444	No			Never
+P-0030906	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	54.871	No			Former
+P-0031027	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	47.573	No			Former
+P-0031029	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	54.049	No			Never
+P-0031061	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	13.611	No			Never
+P-0031079	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.63	No			Former
+P-0031082	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	50.334	No			Former
+P-0031254	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	4.701	No			Former
+P-0031266	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	31.003	No			Former
+P-0031416	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	53.392	No			Never
+P-0031555	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.71	No			Never
+P-0031585	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	53.457	No			Never
+P-0031700	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0031770	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	53.129	No			Former
+P-0031809	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.742	No			Never
+P-0031860	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	50.104	No			Never
+P-0031872	WHITE	CHRISTIAN	Male		DECEASED	12.395	No			Former
+P-0032111	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	31.594	No			Never
+P-0032125	NO VALUE ENTERED	NO VALUE ENTERED	Female		LIVING		No			
+P-0032134	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.381	No			Never
+P-0032155	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	50.005	No			Never
+P-0032160	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.038	No			Former
+P-0032184	OTHER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	51.781	No			Never
+P-0032252	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	19.66	No			Never
+P-0032432	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	50.367	No			Never
+P-0032704	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.584	No			Never
+P-0032803	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	52.734	No			Former
+P-0032842	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	51.682	No			Former
+P-0032933	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	16.11	No			Former
+P-0032989	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	47.54	No			Never
+P-0033130	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	48.855	No			Never
+P-0033132	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.808	No			Active
+P-0033305	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.255	No			Never
+P-0033360	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	51.978	No			Never
+P-0033362	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	37.315	No			Former
+P-0033419	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	14.729	No			Never
+P-0033487	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	19.101	No			Former
+P-0033925	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.518	No			Active
+P-0034023	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	50.794	No			Former
+P-0034156	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	29.984	No			Active
+P-0034183	OTHER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	47.671	No			Never
+P-0034211	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	28.603	No			Never
+P-0034249	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	4.011	No			Active
+P-0034252	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.282	No			Never
+P-0034642	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	40.504	No			Former
+P-0034675	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	41.852	No			Former
+P-0034680	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.151	No			Never
+P-0034855	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	35.342	No			Former
+P-0034947	WHITE	NONE	Male	Unknown whether Spanish or not	LIVING	15.353	No			Former
+P-0034982	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	49.578	No			Former
+P-0035179	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.644	No			Former
+P-0035211	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	2.433	No			Former
+P-0035497	BLACK OR AFRICAN AMERICAN	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	42.378	No			Never
+P-0035527	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.822	No			Former
+P-0035590	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.521	No			Former
+P-0035793	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	49.381	No			Never
+P-0036098	NO VALUE ENTERED	NO VALUE ENTERED	Male		LIVING		No			
+P-0036232	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	9.797	No			Never
+P-0036296	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	12.953	No			Former
+P-0036305	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0036357	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	0.132	No			Former
+P-0036403	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	44.088	No			Never
+P-0036482	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	48.69	No			Never
+P-0036512	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	0.099	No			Former
+P-0036636	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	14.926	No			Active
+P-0036700	PT REFUSED TO ANSWER	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	7.167	No			Never
+P-0037113	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	6.279	No			Never
+P-0037268	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	24.855	No			Former
+P-0037294	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	8.712	No			Active
+P-0037428	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.844	No			Never
+P-0037546	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	46.784	No			Former
+P-0037716	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	17.819	No			Never
+P-0037892	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	44.778	No			Active
+P-0038120	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	0.888	No			Former
+P-0038145	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	45.37	No			Never
+P-0038203	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	43.693	No			Never
+P-0038226	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	45.534	No			Never
+P-0038250	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	46.389	No			Active
+P-0038253	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	46.882	No			Never
+P-0038329	WHITE	METHODIST	Female	Non-Spanish; Non-Hispanic	LIVING	42.411	No			Former
+P-0038350	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	12.362	No			Former
+P-0038352	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	4.241	No			Former
+P-0038370	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	43.923	No			Never
+P-0038500	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	34.027	No			Former
+P-0038593	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	40.241	No			Never
+P-0038602	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	45.994	No			Never
+P-0038613	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.06	No			Former
+P-0038614	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.507	No			Active
+P-0038855	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	36.822	No			Former
+P-0038966	BLACK OR AFRICAN AMERICAN	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	4.833	No			Never
+P-0038982	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	37.118	No			Never
+P-0039026	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0039109	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	23.047	No			Former
+P-0039119	OTHER	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	44.844	No			Former
+P-0039130	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	23.967	No			Never
+P-0039138	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	45.205	No			Former
+P-0039178	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	45.929	No			Former
+P-0039420	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	5.03	No			Former
+P-0039448	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	44.91	No			Never
+P-0039502	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	45.699	No			Former
+P-0039512	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	45.403	No			Former
+P-0039551	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	45.896	No			Former
+P-0039626	WHITE	UNITARIAN	Male	Non-Spanish; Non-Hispanic	LIVING	45.107	No			Never
+P-0039652	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	43.003	No			Never
+P-0039740	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0039829	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	22.784	No			Former
+P-0039881	WHITE	METHODIST	Male	Non-Spanish; Non-Hispanic	LIVING	45.14	No			Never
+P-0039926	OTHER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	38.696	No			Never
+P-0039965	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	6.51	No			Never
+P-0039974	BLACK OR AFRICAN AMERICAN	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	33.633	No			Former
+P-0040105	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.142	No			Never
+P-0040139	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	44.647	No			Active
+P-0040184	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	26.663	No			Former
+P-0040185	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	15.353	No			Former
+P-0040197	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	44.581	No			Never
+P-0040329	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	42.016	No			Former
+P-0040377	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	33.271	No			Active
+P-0040412	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.956	No			Never
+P-0040532	BLACK OR AFRICAN AMERICAN	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.921	No			Never
+P-0040569	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	44.153	No			Never
+P-0040616	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	43.364	No			Never
+P-0040669	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	44.252	No			Never
+P-0040809	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	40.142	No			Never
+P-0040946	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0041104	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.378	No			Never
+P-0041107	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	38.531	No			Former
+P-0041147	BLACK OR AFRICAN AMERICAN	SEVEN DAY ADVENTIST	Male	Non-Spanish; Non-Hispanic	LIVING	44.548	No			Never
+P-0041172	ASIAN-FAR EAST/INDIAN SUBCONT	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	42.345	No			Active
+P-0041220	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	6.115	No			Former
+P-0041253	BLACK OR AFRICAN AMERICAN	NO VALUE ENTERED	Female	Non-Spanish; Non-Hispanic	LIVING		No			
+P-0041271	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	23.901	No			Former
+P-0041284	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	25.184	No			Active
+P-0041288	WHITE	NONE	Male	Unknown whether Spanish or not	LIVING	42.148	No			Never
+P-0041365	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	44.449	No			Former
+P-0041372	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	40.964	No			Never
+P-0041525	NO VALUE ENTERED	NO VALUE ENTERED	Male		LIVING		No			
+P-0041578	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0041579	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0041580	NO VALUE ENTERED	NO VALUE ENTERED	Male		LIVING		No			
+P-0041607	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	14.301	No			Never
+P-0041611	WHITE	CATHOLIC/ROMAN	Female	Unknown whether Spanish or not	DECEASED	1.414	No			Active
+P-0041700	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	44.022	No			Former
+P-0041831	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	39.386	No			Former
+P-0041848	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	2.795	No			Never
+P-0041869	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0041970	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0041987	UNKNOWN	UNKNOWN	Female	Unknown whether Spanish or not	DECEASED	19.463	No			Former
+P-0042022	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.745	No			Former
+P-0042080	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Active
+P-0042109	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	35.047	No			Former
+P-0042110	ASIAN-FAR EAST/INDIAN SUBCONT	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	22.751	No			Active
+P-0042120	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	43.759	No			Former
+P-0042123	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	36.756	No			Never
+P-0042163	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0042206	WHITE	UNKNOWN	Female	Non-Spanish; Non-Hispanic	DECEASED	32.449	No			Former
+P-0042245	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	43.134	No			Former
+P-0042246	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	43.167	No			Former
+P-0042248	OTHER	UNKNOWN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	40.899	No			Former
+P-0042270	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	37.907	No			Former
+P-0042441	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	43.233	No			Never
+P-0042502	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	43.364	No			Former
+P-0042531	WHITE	JEHOVAH WITNESS	Male	Non-Spanish; Non-Hispanic	LIVING	37.907	No			Never
+P-0042591	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	38.63	No			Former
+P-0042594	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	24.822	No			Active
+P-0042642	WHITE	PROTESTANT	Male	Unknown whether Spanish or not	LIVING	36.329	No			Never
+P-0042683	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	19.003	No			Former
+P-0042696	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	41.786	No			Former
+P-0042825	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	13.381	No			Former
+P-0042907	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	33.468	No			Former
+P-0043233	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	9.436	No			Former
+P-0043287	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	14.104	No			Former
+P-0043289	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	22.816	No			Former
+P-0043292	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	7.595	No			Former
+P-0043334	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	3.419	No			Never
+P-0043366	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	41.03	No			Active
+P-0043685	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	38.137	No			Never
+P-0043697	WHITE	NO VALUE ENTERED	Male	Non-Spanish; Non-Hispanic	LIVING		No			
+P-0043701	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0043801	OTHER	CHRISTIAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	7.792	No			Former
+P-0043824	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	31.529	No			Never
+P-0043949	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	42.148	No			Active
+P-0043966	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	31.003	No			Never
+P-0044060	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	8.647	No			Former
+P-0044119	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	40.866	No			Former
+P-0044223	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	40.866	No			Former
+P-0044324	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	16.504	No			Former
+P-0044353	ASIAN-FAR EAST/INDIAN SUBCONT	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.701	No			Former
+P-0044366	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.682	No			Active
+P-0044386	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	19.068	No			Never
+P-0044415	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	LIVING	41.26	No			Active
+P-0044446	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	40.636	No			Never
+P-0044450	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.866	No			Never
+P-0044457	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	39.255	No			Never
+P-0044506	ASIAN-FAR EAST/INDIAN SUBCONT	HINDU	Male	Non-Spanish; Non-Hispanic	LIVING	38.17	No			Never
+P-0044511	WHITE	BAPTIST	Male	Non-Spanish; Non-Hispanic	DECEASED	9.797	No			Active
+P-0044537	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	36	No			Never
+P-0044579	WHITE	PENTECOSTAL	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	1.808	No			Former
+P-0044580	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	27.222	No			Active
+P-0044581	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	37.381	No			Active
+P-0044702	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	DECEASED	5.786	No			Former
+P-0044743	WHITE	OTHER	Male	Non-Spanish; Non-Hispanic	LIVING	39.518	No			Former
+P-0044769	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	21.731	No			Former
+P-0044809	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	36.657	No			Former
+P-0044820	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	39.485	No			Former
+P-0044846	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.825	No			Active
+P-0044862	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.8	No			Former
+P-0044929	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	1.578	No			Never
+P-0044932	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	26.499	No			Former
+P-0044934	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.997	No			Active
+P-0044959	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	30.805	No			Former
+P-0045030	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	37.578	No			Never
+P-0045036	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	39.189	No			Former
+P-0045054	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.6	No			Active
+P-0045136	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	38.597	No			Never
+P-0045143	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.995	No			Former
+P-0045159	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	6.904	No			Former
+P-0045171	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	9.666	No			Former
+P-0045181	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	40.997	No			Never
+P-0045202	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	2.038	No			Never
+P-0045203	BLACK OR AFRICAN AMERICAN	SEVEN DAY ADVENTIST	Female	Non-Spanish; Non-Hispanic	DECEASED	15.945	No			Never
+P-0045215	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0045235	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.997	No			Never
+P-0045239	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.573	No			Former
+P-0045405	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	8.482	No			Former
+P-0045414	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	38.827	No			Former
+P-0045462	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	40.668	No			Former
+P-0045548	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	10.948	No			Former
+P-0045552	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	6.773	No			Former
+P-0045572	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	40.603	No			Never
+P-0045622	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0045625	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	DECEASED	0	No			Former
+P-0045633	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	8.219	No			Former
+P-0045651	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	37.512	No			Former
+P-0045669	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	38.4	No			Former
+P-0045742	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	37.512	No			Never
+P-0045816	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	39.189	No			Never
+P-0045821	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0045839	BLACK OR AFRICAN AMERICAN	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	0.395	No			Former
+P-0045859	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	40.373	No			Former
+P-0045905	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	LIVING	39.222	No			Never
+P-0046025	WHITE	JEWISH	Female		LIVING	28.438	No			Never
+P-0046069	WHITE	UNKNOWN	Female	Non-Spanish; Non-Hispanic	LIVING	33.6	No			Never
+P-0046070	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	40.208	No			Never
+P-0046089	OTHER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	17.129	No			Former
+P-0046091	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.422	No			Never
+P-0046163	WHITE	JEWISH	Male	Unknown whether Spanish or not	DECEASED	1.184	No			Former
+P-0046165	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	32.712	No			Active
+P-0046234	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0046292	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	23.112	No			Active
+P-0046363	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	LIVING	38.762	No			Former
+P-0046447	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	35.573	No			Former
+P-0046551	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	38.005	No			Never
+P-0046579	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	38.038	No			Former
+P-0046598	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	34.751	No			Former
+P-0046604	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	38.992	No			Active
+P-0046617	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	7.595	No			Former
+P-0046626	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	14.236	No			Former
+P-0046646	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	31.036	No			Active
+P-0046649	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.033	No			Active
+P-0046652	OTHER	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	13.282	No			Never
+P-0046663	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0046666	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0046714	WHITE	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	39.156	No			Former
+P-0046719	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	9.403	No			Former
+P-0046732	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	17.063	No			Never
+P-0046758	WHITE	METHODIST	Male	Non-Spanish; Non-Hispanic	LIVING	13.249	No			Never
+P-0046894	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	20.055	No			Former
+P-0046919	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	21.468	No			Former
+P-0047007	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	6.838	No			Former
+P-0047116	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	38.268	No			Never
+P-0047216	WHITE	UNKNOWN	Female	Non-Spanish; Non-Hispanic	LIVING	30.477	No			Never
+P-0047232	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	37.578	No			Never
+P-0047290	OTHER	CATHOLIC/ROMAN	Male	Puerto Rican	LIVING	37.545	No			Former
+P-0047305	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	4.373	No			Never
+P-0047421	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	28.077	No			Former
+P-0047538	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	37.184	No			Never
+P-0047573	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	37.71	No			Former
+P-0047602	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	38.038	No			Former
+P-0047636	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	DECEASED	15.156	No			Former
+P-0047670	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.915	No			Former
+P-0047715	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	4.11	No			Former
+P-0047741	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	38.367	No			Former
+P-0047743	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	18.444	No			Active
+P-0047760	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	8.745	No			Former
+P-0047890	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	37.348	No			Former
+P-0047904	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	15.255	No			Former
+P-0047905	WHITE	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	DECEASED	4.307	No			Former
+P-0047954	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	36.329	No			Former
+P-0047971	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	12.756	No			Never
+P-0047985	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	33.567	No			Never
+P-0048074	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	35.178	No			Former
+P-0048079	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0048113	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0048135	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	16.471	No			Never
+P-0048137	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	2.334	No			Active
+P-0048283	ASIAN-FAR EAST/INDIAN SUBCONT	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	32.811	No			Active
+P-0048291	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	24.658	No			Former
+P-0048295	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	37.611	No			Former
+P-0048297	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	23.474	No			Former
+P-0048298	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	37.282	No			Active
+P-0048309	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	DECEASED	0.197	No			Never
+P-0048322	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	34.652	No			Never
+P-0048355	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	16.373	No			Never
+P-0048406	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	34.192	No			Never
+P-0048461	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	21.074	No			Never
+P-0048474	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	DECEASED	19.299	No			Former
+P-0048511	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	37.874	No			Former
+P-0048532	WHITE	GREEK ORTHODOX	Male	Non-Spanish; Non-Hispanic	DECEASED	8.844	No			Former
+P-0048560	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0048591	WHITE	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	37.841	No			Never
+P-0048650	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	37.085	No			Never
+P-0048705	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0048716	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	37.545	No			Former
+P-0048763	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.803	No			Never
+P-0048765	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.244	No			Former
+P-0048793	WHITE	SEVEN DAY ADVENTIST	Male	Non-Spanish; Non-Hispanic	LIVING	34.521	No			Former
+P-0048861	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	37.447	No			Former
+P-0048913	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	12.986	No			Active
+P-0048917	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	DECEASED	11.474	No			
+P-0048921	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0048978	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.638	No			Former
+P-0049031	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0049044	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	20.153	No			Former
+P-0049046	OTHER	CATHOLIC/ROMAN	Female	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	24.592	No			Never
+P-0049118	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	3.353	No			Former
+P-0049124	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.638	No			Active
+P-0049227	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	37.315	No			Never
+P-0049259	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	36.789	No			Former
+P-0049263	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	34.093	No			Never
+P-0049331	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	1.71	No			Former
+P-0049365	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	33.37	No			Former
+P-0049367	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	0.329	No			Active
+P-0049390	NO VALUE ENTERED	NO VALUE ENTERED	Male		LIVING		No			
+P-0049566	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	36.888	No			Active
+P-0049587	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	34.126	No			Active
+P-0049767	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0049777	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	34.586	No			Never
+P-0049799	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	35.507	No			Former
+P-0049800	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.079	No			Former
+P-0049804	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	35.014	No			Former
+P-0049808	WHITE	CATHOLIC/ROMAN	Female	South/Central America (except Brazil)	LIVING	27.222	No			Never
+P-0049814	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	32.515	No			Active
+P-0049870	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	35.014	No			Former
+P-0049875	PT REFUSED TO ANSWER	PROTESTANT	Male	Puerto Rican	LIVING	23.178	No			Never
+P-0049916	PT REFUSED TO ANSWER	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	36.592	No			Never
+P-0049958	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	33.501	No			Former
+P-0049988	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	11.112	No			Former
+P-0049990	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	16.964	No			Never
+P-0050073	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.948	No			Never
+P-0050112	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0050117	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	18.641	No			Never
+P-0050206	BLACK OR AFRICAN AMERICAN	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	33.994	No			Never
+P-0050229	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	16.011	No			Never
+P-0050402	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.025	No			Active
+P-0050435	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	35.638	No			Former
+P-0050438	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	31.167	No			Former
+P-0050440	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.652	No			Former
+P-0050442	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.849	No			Never
+P-0050490	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	24.394	No			Former
+P-0050495	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.712	No			Former
+P-0050500	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	30.378	No			Never
+P-0050529	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	33.699	No			Former
+P-0050536	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0050547	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	33.863	No			Never
+P-0050554	WHITE	METHODIST	Male	Non-Spanish; Non-Hispanic	DECEASED	1.94	No			Active
+P-0050559	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	12.953	No			Former
+P-0050621	WHITE	BUDDHIST	Male	Non-Spanish; Non-Hispanic	LIVING	0.46	No			Never
+P-0050660	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.079	No			Never
+P-0050713	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0050768	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	32.745	No			Active
+P-0050788	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0050807	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	5.523	No			Former
+P-0050889	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	32.416	No			Never
+P-0050940	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	0.197	No			Never
+P-0050955	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	DECEASED	14.992	No			Former
+P-0051000	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	20.384	No			Active
+P-0051006	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	35.77	No			Former
+P-0051008	WHITE	NONE	Male	Unknown whether Spanish or not	LIVING	35.474	No			Never
+P-0051074	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0051098	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING	0.526	No			
+P-0051099	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0051100	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0051110	WHITE	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	DECEASED	24.099	No			Former
+P-0051122	BLACK OR AFRICAN AMERICAN	BAPTIST	Female	Non-Spanish; Non-Hispanic	LIVING	32.449	No			Former
+P-0051148	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	33.633	No			Active
+P-0051151	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	32.778	No			Former
+P-0051166	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	15.419	No			Former
+P-0051181	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	31.726	No			Former
+P-0051182	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.027	No			Never
+P-0051226	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	29.885	No			Former
+P-0051233	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.811	No			Former
+P-0051234	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	33.271	No			Former
+P-0051237	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Unknown whether Spanish or not	LIVING	34.981	No			Former
+P-0051267	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0051307	OTHER	MUSLIM	Female	Non-Spanish; Non-Hispanic	LIVING	32.252	No			Never
+P-0051312	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	18.247	No			Active
+P-0051369	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	14.4	No			Former
+P-0051370	WHITE	PRESBYTERIAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.712	No			Former
+P-0051408	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	2.992	No			Former
+P-0051421	WHITE	CATHOLIC/ROMAN	Male	South/Central America (except Brazil)	LIVING	32.877	No			Never
+P-0051433	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	5.392	No			Former
+P-0051465	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	31.496	No			Never
+P-0051506	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	34.389	No			Former
+P-0051602	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	33.37	No			Former
+P-0051641	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.586	No			Former
+P-0051682	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.455	No			Never
+P-0051695	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	28.603	No			Never
+P-0051700	BLACK OR AFRICAN AMERICAN	PROTESTANT	Male	Unknown whether Spanish or not	LIVING	27.156	No			Never
+P-0051792	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	34.948	No			Former
+P-0051819	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	12.723	No			Former
+P-0051822	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.573	No			Former
+P-0051839	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	LIVING	31.101	No			Never
+P-0051868	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	LIVING	0.23	No			Former
+P-0051890	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	31.167	No			Former
+P-0051922	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	23.901	No			Active
+P-0051923	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	10.422	No			Active
+P-0051944	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	28.57	No			Former
+P-0051992	BLACK OR AFRICAN AMERICAN	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	LIVING	27.386	No			Never
+P-0051995	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	12.131	No			Active
+P-0052001	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.145	No			Active
+P-0052021	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	28.373	No			Former
+P-0052042	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	1.118	No			Former
+P-0052097	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0052099	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Active
+P-0052129	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0052136	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	29.951	No			Former
+P-0052173	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	15.649	No			Former
+P-0052217	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.521	No			Never
+P-0052235	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING	0.197	No			
+P-0052247	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	33.863	No			Former
+P-0052267	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0052290	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.877	No			Former
+P-0052324	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	29.589	No			Never
+P-0052334	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.685	No			Former
+P-0052344	WHITE	UNKNOWN	Female	Non-Spanish; Non-Hispanic	LIVING	30.97	No			Former
+P-0052352	WHITE	EPISCOPALIAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.781	No			Never
+P-0052378	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.751	No			Never
+P-0052440	BLACK OR AFRICAN AMERICAN	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	30.608	No			Never
+P-0052467	WHITE	CATHOLIC/ROMAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	34.323	No			Never
+P-0052496	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	27.584	No			Active
+P-0052567	WHITE	JEWISH	Female	Unknown whether Spanish or not	LIVING	34.553	No			Former
+P-0052578	BLACK OR AFRICAN AMERICAN	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	34.422	No			Never
+P-0052620	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	34.323	No			Never
+P-0052673	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.386	No			Never
+P-0052706	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	2.86	No			Former
+P-0052719	WHITE	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	30.97	No			Former
+P-0052733	WHITE	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	0.592	No			Never
+P-0052787	WHITE	LUTHERAN	Female	Unknown whether Spanish or not	LIVING	33.534	No			Never
+P-0052797	WHITE	CHRISTIAN	Female	Non-Spanish; Non-Hispanic	LIVING	32.844	No			Former
+P-0052810	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	2.071	No			Former
+P-0052926	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	DECEASED	25.874	No			Former
+P-0052927	WHITE	METHODIST	Male	Non-Spanish; Non-Hispanic	LIVING	31.036	No			Active
+P-0052968	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	16.866	No			Former
+P-0052973	PT REFUSED TO ANSWER	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	32.515	No			Never
+P-0052982	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	2.17	No			Never
+P-0053013	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	34.093	No			Active
+P-0053074	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0053075	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0053128	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	33.666	No			Never
+P-0053244	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	21.37	No			Former
+P-0053279	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	29.458	No			Never
+P-0053310	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	33.962	No			Former
+P-0053322	ASIAN-FAR EAST/INDIAN SUBCONT	MUSLIM	Male	Non-Spanish; Non-Hispanic	LIVING	33.83	No			Active
+P-0053330	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	31.036	No			Former
+P-0053333	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	0.395	No			Former
+P-0053334	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	29.096	No			Former
+P-0053335	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	0.953	No			Never
+P-0053360	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	27.551	No			Never
+P-0053362	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.022	No			Never
+P-0053398	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	24.592	No			Active
+P-0053408	WHITE	JEWISH	Female	Non-Spanish; Non-Hispanic	LIVING	33.304	No			Active
+P-0053514	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	33.83	No			Former
+P-0053528	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	LIVING	14.4	No			Never
+P-0053564	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	33.797	No			Former
+P-0053626	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	31.66	No			Former
+P-0053648	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	18.97	No			Never
+P-0053705	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	33.633	No			Never
+P-0053738	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	30.411	No			Never
+P-0053751	WHITE	PROTESTANT	Female	Non-Spanish; Non-Hispanic	LIVING	30.805	No			Former
+P-0053753	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	31.529	No			Former
+P-0053786	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0053799	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	25.414	No			Never
+P-0053805	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	29.984	No			Never
+P-0053819	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0053825	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	30.082	No			Former
+P-0053832	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	2.729	No			Former
+P-0053850	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	31.036	No			Former
+P-0053864	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	22.126	No			Former
+P-0053892	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	32.285	No			Former
+P-0053894	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	27.419	No			Active
+P-0053912	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	32.712	No			Former
+P-0053973	WHITE	JEHOVAH WITNESS	Male	Non-Spanish; Non-Hispanic	LIVING	11.737	No			Never
+P-0053996	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Former
+P-0054012	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054071	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054097	WHITE	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	11.31	No			Former
+P-0054099	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	31.101	No			Never
+P-0054213	PT REFUSED TO ANSWER	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	32.449	No			Never
+P-0054228	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	28.734	No			Never
+P-0054249	WHITE	LUTHERAN	Female	Non-Spanish; Non-Hispanic	LIVING	32.219	No			Never
+P-0054274	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	17.458	No			Former
+P-0054275	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054348	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	29.326	No			Former
+P-0054361	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	33.041	No			Former
+P-0054398	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	29.49	No			Active
+P-0054400	WHITE	BAPTIST	Male	Non-Spanish; Non-Hispanic	LIVING	32.712	No			Never
+P-0054403	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054425	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0054498	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	27.09	No			Former
+P-0054500	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	30.082	No			Former
+P-0054530	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054547	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	30.279	No			Former
+P-0054636	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	31.89	No			Never
+P-0054638	WHITE	JEWISH	Female		LIVING	5.655	No			Former
+P-0054650	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	27.847	No			Never
+P-0054659	ASIAN-FAR EAST/INDIAN SUBCONT	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	26.926	No			Former
+P-0054665	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING		No			Never
+P-0054706	NO VALUE ENTERED	NO VALUE ENTERED	Female	Unknown whether Spanish or not	LIVING		No			
+P-0054707	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054755	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	31.726	No			Never
+P-0054932	WHITE	UNKNOWN	Male	Non-Spanish; Non-Hispanic	DECEASED	7.036	No			Never
+P-0054945	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0054978	WHITE	CHRISTIAN	Male	Unknown whether Spanish or not	LIVING	27.321	No			Former
+P-0054982	WHITE	CHRISTIAN	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	5.622	No			Never
+P-0055044	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	31.792	No			Active
+P-0055045	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	DECEASED	17.688	No			Former
+P-0055046	ASIAN-FAR EAST/INDIAN SUBCONT	HINDU	Male	Non-Spanish; Non-Hispanic	LIVING	30.082	No			Never
+P-0055080	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	8.515	No			Former
+P-0055085	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	30.181	No			Never
+P-0055125	OTHER	NONE	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	28.931	No			Active
+P-0055139	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	20.219	No			Former
+P-0055166	WHITE	JEWISH	Male	Non-Spanish; Non-Hispanic	LIVING	30.674	No			Never
+P-0055193	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	29.589	No			Never
+P-0055286	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	31.167	No			Former
+P-0055334	ASIAN-FAR EAST/INDIAN SUBCONT	PROTESTANT	Male	Non-Spanish; Non-Hispanic	DECEASED	13.479	No			Former
+P-0055377	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	30.707	No			Former
+P-0055394	WHITE	NONE	Male	Non-Spanish; Non-Hispanic	LIVING	27.485	No			Active
+P-0055409	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0055460	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	1.545	No			Former
+P-0055464	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	3.518	No			Never
+P-0055494	WHITE	NONE	Female	Non-Spanish; Non-Hispanic	LIVING	30.542	No			Never
+P-0055529	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	DECEASED	11.112	No			Former
+P-0055532	WHITE	METHODIST	Male	Spanish  NOS; Hispanic NOS, Latino NOS	LIVING	5.819	No			Former
+P-0055535	NO VALUE ENTERED	NO VALUE ENTERED	Male	Unknown whether Spanish or not	LIVING		No			
+P-0055561	WHITE	CATHOLIC/ROMAN	Female	Non-Spanish; Non-Hispanic	LIVING	23.079	No			Former
+P-0055562	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	21.863	No			Former
+P-0055563	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	12.197	No			Former
+P-0055565	ASIAN-FAR EAST/INDIAN SUBCONT	PROTESTANT	Male	Non-Spanish; Non-Hispanic	LIVING	30.74	No			Former
+P-0055566	WHITE	CATHOLIC/ROMAN	Male	Non-Spanish; Non-Hispanic	LIVING	29.589	No			Never
+P-0055718	WHITE	LUTHERAN	Male	Non-Spanish; Non-Hispanic	LIVING	28.8	No			Active
+P-0055829	BLACK OR AFRICAN AMERICAN	CHRISTIAN	Male	Non-Spanish; Non-Hispanic	LIVING	25.414	No			Former

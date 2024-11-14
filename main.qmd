@@ -1,4 +1,13 @@
 ```{r}
 # first commit file
+file_path <- "data_clinical_patient.txt"
+# data <- read.table("data_clinical_patient.txt", header=T)
+
+data <- read.table(file_path, header = TRUE, sep = "\t", skip = 4)
+
+head(data)
+```
+```{r}
+
 ```
 

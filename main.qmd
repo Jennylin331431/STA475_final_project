@@ -1,13 +1,63 @@
+
 ```{r}
-# first commit file
-file_path <- "data_clinical_patient.txt"
-# data <- read.table("data_clinical_patient.txt", header=T)
+# libraries 
 
-data <- read.table(file_path, header = TRUE, sep = "\t", skip = 4)
+library(ggplot2)
+library(jsonlite)
+library(dplyr)
 
+```
+
+
+```{r}
+# load the data
+file_path <- "paired_bladder_2022_clinical_data.tsv"
+
+# Read the JSON data into R
+data <- fromJSON(file_path)
+
+# Convert the resulting list into a data frame, if needed
+data <- as.data.frame(data)
+
+# Remove the studyId column
+data <- data %>% select(-studyId)
+```
+
+```{r}
+# data summary
 head(data)
+
+summary(data)
 ```
+
+
+
+
+### Data Exploration 
 ```{r}
+# website - has the pie chart distribution 
 
+# Create individual bar plots for each variable
+# 1. Sex
+p1 <- ggplot(data, aes(x = SEX)) +
+  geom_bar() +
+  labs(title = "Distribution by Sex", x = "Sex", y = "Count") +
+  theme_minimal()
+
+
+# 4. Smoker
+p2 <- ggplot(data, aes(x = SMOKER)) +
+  geom_bar() +
+  labs(title = "Distribution by Smoking Status", x = "Smoking Status", y = "Count") +
+  theme_minimal()
+
+# Combine plots using the patchwork library if you want them in a grid
+library(patchwork)
+combined_plot <- p1 + p2 + plot_layout(ncol = 2)
+print(combined_plot)
 ```
 
+
+```{r}
+# we already have fraction of geno altered and MSI score on the website - just include this
+```

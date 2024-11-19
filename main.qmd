@@ -10,6 +10,7 @@ library(survival)
 library(tidyverse)
 library(janitor)
 library(survminer)
+library(knitr)
 
 ```
 
@@ -538,32 +539,99 @@ From the plot above and related summary statistics, it appears that the C-S resi
 ## COX/PH Model
 
 
-### Fitting CX models
+### Fitting COX models
+
 
 ```{r}
-summary(data_mutated)
-head(data_mutated)
-unique(data_mutated$SMOKER)
-sum(is.na(data_mutated$SMOKER))
-sum(is.na(data_mutated$MONTHS))
-sum(is.na(data_mutated$STATUS))
-sum(is.na(data_mutated$SEX))
-
-count(data_mutated)
-```
-
-```{r}
-model_cox <- coxph(Surv(MONTHS, STATUS) ~ factor(SEX) + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + factor(SMOKER),
+model_cox_all_predictors <- coxph(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
                   data=data_mutated)
-summary(model_cox)
+summary(model_cox_all_predictors)
 ```
+```{r}
+# remove predictors with p-value > 0.05 - removed MUTATION_COUNT and FRACTION_GENOME_ALTERED  
+model_cox_2 <- coxph(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + SMOKER,
+                  data=data_mutated)
+summary(model_cox_2)
+```
+```{r}
+# try removing MSI_score
+model_cox_3 <- coxph(Surv(MONTHS, STATUS) ~ SEX + SMOKER,
+                  data=data_mutated)
+summary(model_cox_3)
+```
+### Choose Best Model 
+
 
 ```{r}
-# Create a frequency table of the 'SMOKER' column
-mode_smoker <- names(sort(table(data_mutated$SMOKER), decreasing = TRUE))[1]
-
-# Display the most frequent value (mode)
-mode_smoker
+lr_summary <- tibble(model=c(1,2,3),
+ n_param = c(5, 3, 2),
+ loglik = c(model_cox_all_predictors$loglik[2], model_cox_2$loglik[2], model_cox_3$loglik[2]),
+ CompToModel=c(NA, 1, 2),
+ obsLRstat=c(NA,-2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),-2*(model_cox_3$loglik[2]-model_cox_2$loglik[2])),
+ df_for_comp = c(NA, 5-3, 3-2),
+ pvalue = c(NA,
+ pchisq(-2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),
+ df=3, lower.tail=FALSE),
+ pchisq(-2*(model_cox_3$loglik[2]-model_cox_2$loglik[2]),
+ df=3, lower.tail=FALSE)))
+ kable(lr_summary)
 ```
+
+$H_0:$ Model 1 is as good as Model 2 vs $H_A:$ Model 1 is not as good as Model 2.
+
+At 5% significance, we don't have evidence against the null hypothesis that Model 1 is as good as Model 2. So we should use model 2.  
+
+Similarly, when $H_0:$ Model 2 is as good as Model 3  vs $H_A:$ Model 2 is not as good as Model 3.
+
+At 5% significance, we don't have evidence against the null hypothesis that Model 2 is as good as Model 3. So we should use model 3.  
+
+**Therefore, we should use our last model, which includes sex and smoker as our predictors. **
+
+### obtain performance amongst female vs male
+
+```{r}
+ # Assuming `model_cox_3` is your Cox proportional hazards model
+
+# Prepare new data to predict survival for both Male and Female, with SMOKER = "Active"
+newdata <- data.frame(SEX = c("Female"), SMOKER = c("Active", "Former", "Never"))
+
+# Use survfit to compute survival curves
+sf_cox <- survfit(model_cox_3, newdata = newdata, data = data_mutated)
+
+# Plot survival curves using ggsurvplot
+ggsurvplot(sf_cox, 
+           conf.int = FALSE,        # No confidence intervals
+           censor.shape = "|",      # Censor symbol
+           risk.table = FALSE,      # Don't show the risk table
+           legend.title = "",       # No title for legend
+           legend.labs = c("Active", "Former", "Never"), # Labels for the survival curves
+           title = "Estimated Survival Curves for Each Smoking Status for Females") # Plot title
+
+```
+
+
+```{r}
+ # Assuming `model_cox_3` is your Cox proportional hazards model
+
+# Prepare new data to predict survival for both Male and Female, with SMOKER = "Active"
+newdata <- data.frame(SEX = c("Male"), SMOKER = c("Active", "Former", "Never"))
+
+# Use survfit to compute survival curves
+sf_cox <- survfit(model_cox_3, newdata = newdata, data = data_mutated)
+
+# Plot survival curves using ggsurvplot
+ggsurvplot(sf_cox, 
+           conf.int = FALSE,        # No confidence intervals
+           censor.shape = "|",      # Censor symbol
+           risk.table = FALSE,      # Don't show the risk table
+           legend.title = "",       # No title for legend
+           legend.labs = c("Active", "Former", "Never"), # Labels for the survival curves
+           title = "Estimated Survival Curves for Each Smoking Status for Males") # Plot title
+
+```
+
+optional- TODO : Make Comparison to KM -estimates with the plots above (male vs. female) ? 
+TODO : residual analysis for COX 
+TODO : compare how the results hold amongst Cox and AFT. 
 
 

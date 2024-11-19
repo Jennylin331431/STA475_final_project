@@ -33,6 +33,7 @@ data <- data %>% select(-studyId)
 head(data)
 
 summary(data)
+
 ```
 
 
@@ -67,6 +68,8 @@ print(combined_plot)
 # we already have fraction of geno altered and MSI score on the website - just include this
 ```
 
+
+
 ## AFT Models
 
 ### Cleaning Data
@@ -80,11 +83,19 @@ data_mutated <- data %>%
          MSI_SCORE = as.numeric(MSI_SCORE),
          MUTATION_COUNT = as.numeric(MUTATION_COUNT),
          FRACTION_GENOME_ALTERED = as.numeric(FRACTION_GENOME_ALTERED))%>%
+  filter(!is.na(SMOKER) & !is.na(MSI_SCORE) & !is.na(MUTATION_COUNT) & !is.na(FRACTION_GENOME_ALTERED)) %>% # filter out smoker 
   select(MONTHS, STATUS, SEX, MSI_SCORE, MUTATION_COUNT, FRACTION_GENOME_ALTERED, SMOKER)
 
 head(data_mutated)
   
 ```
+```{r}
+# check whether there are any NAs in the data
+any(is.na(data_mutated))
+colSums(is.na(data_mutated))
+count(data_mutated) # resulting sample size is 285. 
+```
+
 
 ### Fitting AFT models
 ```{r}
@@ -92,6 +103,7 @@ model_weib <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + 
                   data=data_mutated)
 summary(model_weib)
 ```
+
 ```{r}
 model_exp <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
                   data=data_mutated, dist="exponential")
@@ -375,7 +387,7 @@ At 5% significance, under the LR test, we have no evidence against the null hypo
 fit_all <- survreg(Surv(MONTHS, STATUS) ~ SMOKER, data = data_mutated, dist = "weibull")
 summary(fit_all)
 
-# For different smaking group
+# For different smoking group
 fit_active <- survreg(Surv(MONTHS, STATUS) ~ 1, data = data_mutated, subset = (SMOKER == "Active"))
 fit_former <- survreg(Surv(MONTHS, STATUS) ~ 1, data = data_mutated, subset = (SMOKER == "Former"))
 fit_never <- survreg(Surv(MONTHS, STATUS) ~ 1, data = data_mutated, subset = (SMOKER == "Never"))
@@ -471,7 +483,7 @@ At 5% significance, we have no evidence against the null hypothesis that Model 2
 
 ```{r}
 data_mutated <- data_mutated %>%
-  filter(!is.na(MONTHS) & !is.na(STATUS) & !is.na(cs_residuals))
+  filter(!is.na(MONTHS) & !is.na(STATUS))
 
 # Extract parameter estimates from model2
 beta_hat <- model2$coef
@@ -521,4 +533,37 @@ cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
 
 ```
 From the plot above and related summary statistics, it appears that the C-S residuals from Model 2 roughly follow an EXP(1) distribution, which suggests the model fits these data well.
+
+
+## COX/PH Model
+
+
+### Fitting CX models
+
+```{r}
+summary(data_mutated)
+head(data_mutated)
+unique(data_mutated$SMOKER)
+sum(is.na(data_mutated$SMOKER))
+sum(is.na(data_mutated$MONTHS))
+sum(is.na(data_mutated$STATUS))
+sum(is.na(data_mutated$SEX))
+
+count(data_mutated)
+```
+
+```{r}
+model_cox <- coxph(Surv(MONTHS, STATUS) ~ factor(SEX) + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + factor(SMOKER),
+                  data=data_mutated)
+summary(model_cox)
+```
+
+```{r}
+# Create a frequency table of the 'SMOKER' column
+mode_smoker <- names(sort(table(data_mutated$SMOKER), decreasing = TRUE))[1]
+
+# Display the most frequent value (mode)
+mode_smoker
+```
+
 

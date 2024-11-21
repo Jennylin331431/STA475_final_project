@@ -308,7 +308,7 @@ dat2 %>%
   theme_minimal()
 
 ```
-Hard to tell
+Weibull seem to fit best. 
 
 ```{r}
 # break into different smoking group
@@ -456,36 +456,33 @@ summary(model3)
 
 ```{r}
 # Likelihood Ratio Test between Model 1 and Model 2
-loglik_model1 <- summary(model1)$loglik[1]
-loglik_model2 <- summary(model2)$loglik[1]
+loglik_model1 <- summary(model1)$loglik[2]
+loglik_model2 <- summary(model2)$loglik[2]
 
 lr_stat <- 2 * (loglik_model1 - loglik_model2)
 p_value_lr <- pchisq(lr_stat, df = 1, lower.tail = FALSE)
 cat("LR Test Statistic:", lr_stat, "\nP-value:", p_value_lr, "\n")
 
 ```
-$H_0:$ Model 1 is as good as Model 2 vs $H_A:$ Model 1 is not as good as Model 2.
+$H_0:$ Model 2 is better then Model 1 vs $H_A:$ Model 1 is better than Model 2.
 
-At 5% significance, we have strong evidence against the null hypothesis that Model 1 is as good as Model 2. So we should use model 2. 
+At 5% significance, we have no evidence against the null hypothesis that Model 2 is better than Model 1. So we should use model 2. 
 
 ```{r}
 # Likelihood Ratio Test between Model 2 and Model 3
-loglik_model2 <- summary(model2)$loglik[1]
-loglik_model3 <- summary(model3)$loglik[1]
+loglik_model2 <- summary(model2)$loglik[2]
+loglik_model3 <- summary(model3)$loglik[2]
 
 lr_stat <- 2 * (loglik_model2 - loglik_model3)
 p_value_lr <- pchisq(lr_stat, df = 1, lower.tail = FALSE)
 cat("LR Test Statistic:", lr_stat, "\nP-value:", p_value_lr, "\n")
 
 ```
-$H_0:$ Model 2 is as good as Model 3 vs $H_A:$ Model 2 is not as good as Model 3.
+$H_0:$ Model 3 is better than model 2 vs $H_A:$ Model 2 is better than Model 3.
 
-At 5% significance, we have no evidence against the null hypothesis that Model 2 is as good as Model 3. So we should use model 2.
+At 5% significance, we have strong evidence against the null hypothesis that Model 3 is better than Model 2. So we should use model 2.
 
 ```{r}
-data_mutated <- data_mutated %>%
-  filter(!is.na(MONTHS) & !is.na(STATUS))
-
 # Extract parameter estimates from model2
 beta_hat <- model2$coef
 alpha <- beta_hat[1] +

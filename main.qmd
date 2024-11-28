@@ -16,24 +16,9 @@ library(knitr)
 
 ```
 
-
-```{r, eval=FALSE}
-# load the data
-file_path <- "paired_bladder_2022_clinical_data_test2.tsv"
-
-# Read the JSON data into R
-data_temp <- fromJSON(file_path)
-
-# Convert the resulting list into a data frame, if needed
-data_temp <- as.data.frame(data_temp)
-
-# Remove the studyId column
-data_temp <- data_temp %>% select(-studyId)
-```
-
 ```{r, warning=FALSE, message=FALSE}
-# Complete dataset with 1659 samples
-data <- read_tsv("paired_bladder_2022_clinical_data_full.tsv",
+# Filtered Dataset
+data <- read_tsv("bladder_cancer_filtered.tsv",
                  show_col_types = FALSE)
 
 data <- data %>% 
@@ -62,9 +47,7 @@ newnames <- c("patientId", "sampleId", "AGE_AT_DX", "AGE_AT_SEQ_REPORTED_YEARS",
 colnames(data) <- newnames
 ```
 
-
-
-### Data Exploration 
+## Data Exploration 
 ```{r}
 # website - has the pie chart distribution 
 
@@ -98,29 +81,58 @@ print(combined_plot)
 ## AFT Models
 
 ### Cleaning Data
-```{r}
+```{r, warning = FALSE}
 # sex, MSI score, mutation count of tumor (or fraction of mutated cells), and smoking status
 data_mutated <- data %>%
+  # Filter out those who died before sequencing
   filter(OS_MONTHS > 0) %>%
+  # Change the status column for analysis
   mutate(STATUS = if_else(OS_STATUS == "1:DECEASED", 1, 
                           if_else(OS_STATUS == "0:LIVING", 0, NA_real_))) %>%
+  # Clean data types
   mutate(MONTHS = as.numeric(OS_MONTHS), 
          MSI_SCORE = as.numeric(MSI_SCORE),
          MUTATION_COUNT = as.numeric(MUTATION_COUNT),
-         FRACTION_GENOME_ALTERED = as.numeric(FRACTION_GENOME_ALTERED))%>%
-  filter(!is.na(SMOKER) & !is.na(MSI_SCORE) & !is.na(MUTATION_COUNT) & !is.na(FRACTION_GENOME_ALTERED)) %>% # filter out smoker 
-  #filter(SAMPLE_COUNT == 1) %>% 
-  select(patientId, MONTHS, STATUS, SEX, MSI_SCORE, MUTATION_COUNT, FRACTION_GENOME_ALTERED, SMOKER)
+         FRACTION_GENOME_ALTERED = as.numeric(FRACTION_GENOME_ALTERED),
+         AGE_AT_DX = as.numeric(AGE_AT_DX),
+         AGE_AT_SEQ_REPORTED_YEARS = as.numeric(AGE_AT_SEQ_REPORTED_YEARS),
+         INTRAVESICAL_TREATMENT = as.numeric(INTRAVESICAL_TREATMENT),
+         SYSTEMIC_TREATMENT = as.numeric(SYSTEMIC_TREATMENT),
+         TUMOR_PURITY = as.numeric(TUMOR_PURITY),
+         SPECIMEN_STAGE = factor(SPECIMEN_STAGE))%>%
+  # Define Treatment Groups
+  mutate(INTRAVESICAL_TREATMENT = 
+           case_when(
+             INTRAVESICAL_TREATMENT == 0 ~ "Naive",
+             INTRAVESICAL_TREATMENT == 1 ~ "BCG",
+             INTRAVESICAL_TREATMENT == 2 ~ "Chemo",
+             INTRAVESICAL_TREATMENT == 3 ~ "Both",
+             INTRAVESICAL_TREATMENT == "." ~ NA
+             ),
+         SYSTEMIC_TREATMENT = 
+           case_when(
+             SYSTEMIC_TREATMENT == 0 ~ "Naive",
+             SYSTEMIC_TREATMENT == 1 ~ "Chemotherapy",
+             SYSTEMIC_TREATMENT == 2 ~ "Immunotherapy",
+             SYSTEMIC_TREATMENT == 3 ~ "Both",
+             SYSTEMIC_TREATMENT == "." ~ NA
+           )) %>% 
+  # Clean up Race
+  mutate(RACE = ifelse(RACE == "PT REFUSED TO ANSWER", NA, RACE)) %>% 
+  # Select Predictor of Interest
+  select(patientId, MONTHS, STATUS, AGE_AT_DX, 
+         RACE, SEX, SMOKER, MSI_SCORE, MUTATION_COUNT, FRACTION_GENOME_ALTERED, 
+         GENE_PANEL, SYSTEMIC_TREATMENT, INTRAVESICAL_TREATMENT, SAMPLE_COVERAGE,
+         SPECIMEN_STAGE, TUMOR_PURITY) %>% 
+  # Filter out NAs
+  filter(!is.na(AGE_AT_DX),
+         !is.na(RACE),
+         !is.na(MSI_SCORE),
+         !is.na(MUTATION_COUNT),
+         !is.na(TUMOR_PURITY))
 
 head(data_mutated)
   
-```
-
-```{r}
-data_mutated %>% 
-  group_by(patientId) %>% 
-  summarise(n = n()) %>% 
-  arrange(desc(n))
 ```
 
 ```{r}
@@ -143,6 +155,7 @@ model_exp <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + F
                   data=data_mutated, dist="exponential")
 summary(model_exp)
 ```
+
 ```{r}
 model_lognm <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
                   data=data_mutated, dist = "lognormal")
@@ -154,7 +167,8 @@ model_loglogistic <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_C
                   data=data_mutated, dist="loglogistic")
 summary(model_loglogistic)
 ```
-### Exploring different predictor
+
+## Exploring Different Predictors (EDA)
 
 ```{r}
 # Visualize scatter plots for individual covariates
@@ -196,25 +210,97 @@ data_mutated %>%
   labs(x = "Smoking Status", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Smoking Status") +
   theme_minimal()
 
+data_mutated %>%
+  ggplot(aes(x = INTRAVESICAL_TREATMENT, y = log(MONTHS))) +
+  geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
+  geom_boxplot(width = 0.1, alpha = 0.2) +
+  labs(x = "Intravesical Treatment", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Intravesical Treatment") +
+  theme_minimal()
+
+data_mutated %>%
+  ggplot(aes(x = SYSTEMIC_TREATMENT, y = log(MONTHS))) +
+  geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
+  geom_boxplot(width = 0.1, alpha = 0.2) +
+  labs(x = "Systemic Treatment", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Systemic Treatment") +
+  theme_minimal()
+
+data_mutated %>%
+  ggplot(aes(x = RACE, y = log(MONTHS))) +
+  geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
+  geom_boxplot(width = 0.1, alpha = 0.2) +
+  labs(x = "RACE", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Race Group") +
+  theme_minimal()
+
+data_mutated %>% 
+  mutate(status_cat = ifelse(STATUS == 1, "Failed", "Censored")) %>%
+  ggplot(aes(x = AGE_AT_DX, y = log(MONTHS))) +
+  geom_point(aes(shape = status_cat, color = status_cat)) +
+  scale_shape_manual(values = c(17, 16)) +
+  scale_color_manual(values = c("red", "gray")) +
+  theme_minimal()
+
+data_mutated %>% 
+  mutate(status_cat = ifelse(STATUS == 1, "Failed", "Censored")) %>%
+  ggplot(aes(x = TUMOR_PURITY, y = log(MONTHS))) +
+  geom_point(aes(shape = status_cat, color = status_cat)) +
+  scale_shape_manual(values = c(17, 16)) +
+  scale_color_manual(values = c("red", "gray")) +
+  theme_minimal()
+
 ```
+
 For the three numerical covariates show no clear relationship with the log(months), although this may be due to the large proportion of censored data.
 
 ```{r}
 # Kaplan-Meier Plot to visualize survival across groups
+
+# 1. Sex
 km_fit <- survfit(Surv(MONTHS, STATUS) ~ SEX, data = data_mutated)
 ggsurvplot(km_fit, data = data_mutated, pval = TRUE, conf.int = TRUE, 
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by Sex")
+           title = "Kaplan-Meier Curve by Sex",
+           legend.title = "Sex",
+           legend.labs = c("Female.", "Male"))
 
-# Stratify by smoking status
+# 2. Smoker History
 km_fit_smoker <- survfit(Surv(MONTHS, STATUS) ~ SMOKER, data = data_mutated)
 ggsurvplot(km_fit_smoker, data = data_mutated, pval = TRUE, conf.int = TRUE, 
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by Smoking Status")
+           title = "Kaplan-Meier Curve by Smoking Status",
+           legend.title = "Smoking Status",
+           legend.labs = c("Active", "Former", "Never"))
+
+# 3. Systemic Treatment Group
+km_fit_sys <- survfit(Surv(MONTHS, STATUS) ~ SYSTEMIC_TREATMENT, data = data_mutated)
+ggsurvplot(km_fit_sys, data = data_mutated, pval = TRUE, conf.int = TRUE, 
+           ggtheme = theme_minimal(),
+           title = "Kaplan-Meier Curve by Systemic Treatment",
+           legend.title = "Systemic Treatment Group",
+           legend.labs = c("Chemo.", "Immuno.", "Naive"))
+
+# 4. Intravesical Treatment Group
+km_fit_intra <- survfit(Surv(MONTHS, STATUS) ~ INTRAVESICAL_TREATMENT, data = data_mutated)
+ggsurvplot(km_fit_intra, data = data_mutated, pval = TRUE, conf.int = TRUE, 
+           ggtheme = theme_minimal(),
+           title = "Kaplan-Meier Curve by Intravesical Treatment",
+           legend.title = "Intravesical Treatment",
+           legend.labs = c("BCG", "Both", "Chemo", "Naive"))
+
+# 5. Race
+km_fit_race <- survfit(Surv(MONTHS, STATUS) ~ RACE, data = data_mutated)
+ggsurvplot(km_fit_race, data = data_mutated, pval = TRUE, conf.int = TRUE, 
+           ggtheme = theme_minimal(),
+           title = "Kaplan-Meier Curve by Race Group",
+           legend.title = "Race",
+           legend.labs = c("Asian", "African American", "Native American", "Other", "White"))
 ```
+
 The active smoker seem to have a lower survival probabilty at a given time comparing to the two other groups. Female seem to have a lower survival probability at a given time compare to male.
 
-### Comparing Different Models
+We see that there are some significant differences in survival function in smoking status, systemic treatment, and intravesical treatment (from p-value, what test?).
+
+## Comparing Different AFT Model Fit
+
 ```{r}
 fit.weib <- survreg(Surv(MONTHS, STATUS)~1, data=data_mutated, dist='weibull') 
 fit.exp <- survreg(Surv(MONTHS, STATUS)~1, data=data_mutated, dist="exponential") 
@@ -280,7 +366,7 @@ dat_wide |>
   facet_wrap(~model)
 
 ```
-Log-normal seem to fit the data best.
+Log-normal seem to fit the data best. Log-logistic follow close second.
 
 ```{r}
 km <- survfit(Surv(MONTHS, STATUS) ~ 1, data = data_mutated)
@@ -308,7 +394,7 @@ dat %>%
   theme_minimal()
 
 ```
-Log-normal seem to fit the data best
+Log-normal seem to fit the data best.
 
 ```{r}
 # Break into female and male
@@ -380,11 +466,11 @@ dat_smoker %>%
 
 
 ```
-(Weibull fit the data best as the lines are the most parallel.) Lognormal seems to fit best.
+Lognormal seems to fit best again. We would likely expect to seem similar patterns for the other categorical variables. Hence, we are going to settle with the lognormal model for this analysis.
 
-### Model Selection
+### Model Selection (Might Remove)
 
-```{r}
+```{r, eval = FALSE}
 
 fit_weibull <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER, data = data_mutated, dist = "weibull")
 summary(fit_weibull)
@@ -417,7 +503,7 @@ At 5% significance, under the LR test, we have no evidence against the null hypo
 ### Test if the different groups follow different survival distributions
 
 #### Smoking
-```{r}
+```{r, eval = FALSE}
 # fit_all <- survreg(Surv(MONTHS, STATUS) ~ SMOKER, data = data_mutated, dist = "weibull")
 fit_all <- survreg(Surv(MONTHS, STATUS) ~ SMOKER, data = data_mutated, dist = "lognormal")
 summary(fit_all)
@@ -447,7 +533,7 @@ At 0.05 level of significance, we have strong evidence against the null hypothes
 
 #### Sex
 
-```{r}
+```{r, eval=FALSE}
 #fit_all_sex <- survreg(Surv(MONTHS, STATUS) ~ SEX, data = data_mutated, dist = "weibull")
 fit_all_sex <- survreg(Surv(MONTHS, STATUS) ~ SEX, data = data_mutated, dist = "lognormal")
 summary(fit_all_sex)
@@ -472,72 +558,115 @@ cat("Scale Equality LR Test Statistic (SEX):", lr_stat_scale_sex, "\nP-value:", 
 ```
 At 0.05 level of significance, we have strong evidence against the null hypothesis that the $H_0:\tau_1=\tau_2$, so we can conclude that the two groups have different log scale parameter
 
-### Reducing Unnecessory Predictors
-```{r}
-# Fit a Weibull model including covariates SEX, MSI_SCORE, MUTATION_COUNT, FRACTION_GENOME_ALTERED, and SMOKER
-#model1 <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
-#                  data = data_mutated, dist = "weibull")
+## Model Fitting
 
-model1 <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
-                  data = data_mutated, dist = "lognormal")
+Let's begin by fitting a full model with all predictors to see which seemed significant in predicting survival time of bladder cancer patients.
+
+```{r}
+# Model 1: Full Model (Lognormal AFT)
+model1 <- survreg(Surv(MONTHS, STATUS) ~ .,
+                  data = data_mutated[, -1], dist = "lognormal")
 
 summary(model1)
-
 ```
-```{r}
-# Reduced all variables with p-value larger than 0.05
-# model2 <- survreg(Surv(MONTHS, STATUS) ~ SEX + SMOKER,
-#                   data = data_mutated, dist = "weibull")
 
-# Only keep MSI, Mutation Count, FGA
-model2 <- survreg(Surv(MONTHS, STATUS) ~ MSI_SCORE + MUTATION_COUNT
-                  + FRACTION_GENOME_ALTERED + SMOKER,
+It seems that race, sex, smoker, MSI score, fraction genome altered, gene panel, sample coverage are not significantly related to survival time predictions. Hence, let's only consider age at diag., mutation count, systemic treatment group, intravesical treatment group, and specimen stage for the next model.
+
+```{r}
+# Only keep age at diag., mutation count, systemic treatment group, 
+# intravesical treatment group, and specimen stage
+
+# Model 2
+model2 <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT + INTRAVESICAL_TREATMENT + SPECIMEN_STAGE,
                   data = data_mutated, dist = "lognormal")
 
 summary(model2)
 
 ```
 
-```{r}
-# try only include smoker
-# model3 <- survreg(Surv(MONTHS, STATUS) ~ SMOKER,
-#                   data = data_mutated, dist = "weibull")
+Looking at this model, intravesical treatment might not be as relevant. We can consider removing this predictor from the model.
 
-# Try to remove Smoker?
-model3 <- survreg(Surv(MONTHS, STATUS) ~ MSI_SCORE + MUTATION_COUNT
-                  + FRACTION_GENOME_ALTERED,
+```{r}
+# Try to remove intravesical treatment
+
+# Model 3
+model3 <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT + SPECIMEN_STAGE,
                   data = data_mutated, dist = "lognormal")
 
 summary(model3)
 ```
 
-```{r}
-# Likelihood Ratio Test between Model 1 and Model 2
-loglik_model1 <- summary(model1)$loglik[2]
-loglik_model2 <- summary(model2)$loglik[2]
-
-lr_stat <- 2 * (loglik_model1 - loglik_model2)
-p_value_lr <- pchisq(lr_stat, df = 8 - 7, lower.tail = FALSE)
-cat("LR Test Statistic:", lr_stat, "\nP-value:", p_value_lr, "\n")
-
-```
-$H_0:$ Model 2 is better then Model 1 vs $H_A:$ Model 1 is better than Model 2.
-
-At 5% significance, we have no evidence against the null hypothesis that Model 2 is better than Model 1. So we should use model 2. 
+While some categories of both systemic treatment and specimen stage are significant, some categories do not seem to be significantly related to predicting survival time. Hence, let's consider removing both category.
 
 ```{r}
-# Likelihood Ratio Test between Model 2 and Model 3
-loglik_model2 <- summary(model2)$loglik[2]
-loglik_model3 <- summary(model3)$loglik[2]
+# Model 4
+model4 <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT,
+                  data = data_mutated, dist = "lognormal")
 
-lr_stat <- 2 * (loglik_model2 - loglik_model3)
-p_value_lr <- pchisq(lr_stat, df = 7 - 5, lower.tail = FALSE)
-cat("LR Test Statistic:", lr_stat, "\nP-value:", p_value_lr, "\n")
-
+summary(model4)
 ```
-$H_0:$ Model 3 is better than model 2 vs $H_A:$ Model 2 is better than Model 3.
 
-At 5% significance, we have strong evidence against the null hypothesis that Model 3 is better than Model 2. So we should use model 2.
+```{r}
+# Model 5
+model5 <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT,
+                  data = data_mutated, dist = "lognormal")
+
+summary(model5)
+```
+
+```{r}
+lr_summary_aft <- 
+  tibble(model=c(1,2,3, 4, 5),
+         n_param = c(25, 12, 9, 6, 4),
+         loglik = c(model1$loglik[2], 
+                    model2$loglik[2], 
+                    model3$loglik[2], 
+                    model4$loglik[2], 
+                    model5$loglik[2]),
+         CompToModel=c(NA, 1, 2, 3, 4),
+         obsLRstat=c(NA,
+                     2*(model1$loglik[2] - model2$loglik[2]),
+                     2*(model2$loglik[2] - model3$loglik[2]),
+                     2*(model3$loglik[2] - model4$loglik[2]),
+                     2*(model4$loglik[2] - model5$loglik[2])),
+         df_for_comp = c(NA, 25-12, 12-9, 9-6, 6-4),
+         pvalue = c(NA,
+                    pchisq(2*(model1$loglik[2] - model2$loglik[2]),
+                           df=13, lower.tail=FALSE),
+                    pchisq(2*(model2$loglik[2] - model3$loglik[2]),
+                           df=3, lower.tail=FALSE),
+                    pchisq(2*(model3$loglik[2] - model4$loglik[2]),
+                           df=3, lower.tail=FALSE),
+                    pchisq(2*(model4$loglik[2] - model5$loglik[2]),
+                           df=2, lower.tail=FALSE)))
+
+kable(lr_summary_aft)
+```
+
+We can conduct the Likelihood Ratio Test to compare the models previously fitted. The hypothesis (and its conclusion) can be defined as follow for each of the p-value obtained...
+
+$H_0:$ Model 2 is a sufficiently good fit to the data vs $H_A:$ Model 1 better fits the data.
+
+At 5% significance, we have no evidence against the null hypothesis that Model 2 is better than Model 1. So, Model 2 seems sufficient enough to model the data. 
+
+$H_0:$ Model 3 is a sufficiently good fit to the data vs $H_A:$ Model 2 better fits the data.
+
+At 5% significance, we have a somewhat strong evidence against the null hypothesis that Model 3 is better than Model 2. We would consider using Model 2, but it might overfit the data.
+
+$H_0:$ Model 4 is a sufficiently good fit to the data vs $H_A:$ Model 3 better fits the data.
+
+At 5% significance, we have significant evidence against the null hypothesis suggesting that the extra predictors in Model 3 is necessary to include as predictors.
+
+$H_0:$ Model 5 is a sufficiently good fit to the data vs $H_A:$ Model 4 better fits the data.
+
+At 5% significance, we similarly have significant evidence against the null hypothesis.
+
+Hence, based on these comparisons, we might want to consider Model 3 to balance out both significance and avoid overfitting.
+
+### Residual Analysis
 
 Note that since the model is log-normal, we know that the Cox-Snell residuals are defined as such...
 
@@ -546,23 +675,86 @@ $$\hat{r_i} = H(x_i; \: z_i, \hat{\beta}) + 1 +\delta_i= -log[1 - \Phi(\frac{log
 Note here that the $\Phi(\cdot)$ represents the c.d.f. of the standard normal distribution, $x_i = min(t_i, c_i)$, and ... (fill out later) ... .
 
 ```{r}
-# Extract parameter estimates from model2
+# Extract parameter estimates from Model 1
+beta_hat <- model1$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * c(data_mutated$RACE == "BLACK OR AFRICAN AMERICAN") +
+  beta_hat[4] * c(data_mutated$RACE == "NATIVE AMERICAN-AM IND/ALASKA") +
+  beta_hat[5] * c(data_mutated$RACE == "OTHER") +
+  beta_hat[6] * c(data_mutated$RACE == "WHITE") +
+  beta_hat[7] * c(data_mutated$SEX == "Male") +
+  beta_hat[8] * c(data_mutated$SMOKER == "Former") +
+  beta_hat[9] * c(data_mutated$SMOKER == "Never") +
+  beta_hat[10] * data_mutated$MSI_SCORE +
+  beta_hat[11] * data_mutated$MUTATION_COUNT +
+  beta_hat[12] * data_mutated$FRACTION_GENOME_ALTERED +
+  beta_hat[13] * c(data_mutated$GENE_PANEL == "IMPACT410") +
+  beta_hat[14] * c(data_mutated$GENE_PANEL == "IMPACT468") +
+  beta_hat[15] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[16] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[17] * c(data_mutated$INTRAVESICAL_TREATMENT == "Both") +
+  beta_hat[18] * c(data_mutated$INTRAVESICAL_TREATMENT == "Chemo") +
+  beta_hat[19] * c(data_mutated$INTRAVESICAL_TREATMENT == "Naive") +
+  beta_hat[20] * data_mutated$SAMPLE_COVERAGE +
+  beta_hat[21] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[22] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[23] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[24] * data_mutated$TUMOR_PURITY
+
+tau <- model1$scale
+t <- data_mutated$MONTHS
+delta <- data_mutated$STATUS
+
+# Compute Cox-Snell residuals
+cs.residuals <- -log(1 - pnorm((log(t) - alpha)/tau)) + 1 - delta
+
+# Add residuals to the dataset for plotting
+data_res <- data_mutated %>%
+  mutate(cs_residuals = cs.residuals)
+
+# 1. Plot residuals vs SEX
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 2. Plot residuals vs SMOKER
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 3. Compare residuals to an exponential distribution
+# Histogram of residuals
+ggplot(data_res, aes(x = cs_residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
+  stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
+  labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
+       x = "Cox-Snell Residuals", y = "Density") +
+  theme_minimal()
+
+# 4. Summary statistics for residuals
+cat("Mean of residuals:", mean(cs.residuals), "\n")
+cat("Expected mean under EXP(1): 1\n")
+cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
+cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
+```
+
+```{r}
+# Extract parameter estimates from Model 2
 beta_hat <- model2$coef
 alpha <- beta_hat[1] +
-  beta_hat[2] * data_mutated$MSI_SCORE +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
   beta_hat[3] * data_mutated$MUTATION_COUNT +
-  beta_hat[4] * data_mutated$FRACTION_GENOME_ALTERED +
-  beta_hat[5] * c(data_mutated$SMOKER == "Former") +
-  beta_hat[5] * c(data_mutated$SMOKER == "Never")
-
-# Full Model Template
-# alpha <- beta_hat[1] +
-#   beta_hat[2] * c(data_mutated$SEX == "Male") +
-#   beta_hat[3] * data_mutated$MSI_SCORE +
-#   beta_hat[4] * data_mutated$MUTATION_COUNT +
-#   beta_hat[5] * data_mutated$FRACTION_GENOME_ALTERED +
-#   beta_hat[5] * c(data_mutated$SMOKER == "Former")+
-#   beta_hat[6] * c(data_mutated$SMOKER == "Never")
+  beta_hat[4] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[5] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[6] * c(data_mutated$INTRAVESICAL_TREATMENT == "Both") +
+  beta_hat[7] * c(data_mutated$INTRAVESICAL_TREATMENT == "Chemo") +
+  beta_hat[8] * c(data_mutated$INTRAVESICAL_TREATMENT == "Naive") +
+  beta_hat[9] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[10] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[11] * c(data_mutated$SPECIMEN_STAGE == 3)
 
 tau <- model2$scale
 t <- data_mutated$MONTHS
@@ -572,24 +764,24 @@ delta <- data_mutated$STATUS
 cs.residuals <- -log(1 - pnorm((log(t) - alpha)/tau)) + 1 - delta
 
 # Add residuals to the dataset for plotting
-data_mutated <- data_mutated %>%
+data_res <- data_mutated %>%
   mutate(cs_residuals = cs.residuals)
 
 # 1. Plot residuals vs SEX
-ggplot(data_mutated, aes(x = SEX, y = cs_residuals)) +
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
   geom_boxplot() +
   labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
   theme_minimal()
 
 # 2. Plot residuals vs SMOKER
-ggplot(data_mutated, aes(x = SMOKER, y = cs_residuals)) +
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
   geom_boxplot() +
   labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
   theme_minimal()
 
 # 3. Compare residuals to an exponential distribution
 # Histogram of residuals
-ggplot(data_mutated, aes(x = cs_residuals)) +
+ggplot(data_res, aes(x = cs_residuals)) +
   geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
   stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
   labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
@@ -601,44 +793,222 @@ cat("Mean of residuals:", mean(cs.residuals), "\n")
 cat("Expected mean under EXP(1): 1\n")
 cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
 cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
+```
 
+```{r}
+# Extract parameter estimates from model3
+beta_hat <- model3$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * data_mutated$MUTATION_COUNT +
+  beta_hat[4] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[5] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[6] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[7] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[8] * c(data_mutated$SPECIMEN_STAGE == 3)
 
+tau <- model3$scale
+t <- data_mutated$MONTHS
+delta <- data_mutated$STATUS
+
+# Compute Cox-Snell residuals
+cs.residuals <- -log(1 - pnorm((log(t) - alpha)/tau)) + 1 - delta
+
+# Add residuals to the dataset for plotting
+data_res <- data_mutated %>%
+  mutate(cs_residuals = cs.residuals)
+
+# 1. Plot residuals vs SEX
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 2. Plot residuals vs SMOKER
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 3. Compare residuals to an exponential distribution
+# Histogram of residuals
+ggplot(data_res, aes(x = cs_residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
+  stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
+  labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
+       x = "Cox-Snell Residuals", y = "Density") +
+  theme_minimal()
+
+# 4. Summary statistics for residuals
+cat("Mean of residuals:", mean(cs.residuals), "\n")
+cat("Expected mean under EXP(1): 1\n")
+cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
+cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
 ```
 Unfortunately, it seems that while the average of the C-S residuals are consistent with the Exp(1) distribution, the distribution does NOT follow. We should, therefore, consider other approaches to this model. Let's see if the other parametric forms help resolves this issue.
 
+##### Log-Logistic AFT Model
+
+```{r}
+# Model 1: Full Model (Log-logistic AFT)
+model1_log <- survreg(Surv(MONTHS, STATUS) ~ .,
+                  data = data_mutated[, -1], dist = "loglogistic")
+
+summary(model1_log)
+```
+
 ```{r}
 # Try log-logistic?
-model4 <- survreg(Surv(MONTHS, STATUS) ~ MSI_SCORE + MUTATION_COUNT
-                  + FRACTION_GENOME_ALTERED + SMOKER,
+model2_log <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT + INTRAVESICAL_TREATMENT + SPECIMEN_STAGE,
                   data = data_mutated, dist = "loglogistic")
 
-summary(model4)
+summary(model2_log)
 ```
 
 ```{r}
-# Try Weibull?
-model5 <- survreg(Surv(MONTHS, STATUS) ~ MSI_SCORE + MUTATION_COUNT
-                  + FRACTION_GENOME_ALTERED + SMOKER,
-                  data = data_mutated, dist = "exponential")
+# Try log-logistic?
+model3_log <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT + SPECIMEN_STAGE,
+                  data = data_mutated, dist = "loglogistic")
 
-summary(model5)
+summary(model3_log)
 ```
 
-We still observe consistent significance of variables for either Weibull or log-logistic model.
-
-Residual Analysis for Model 2 (Log-logistic)
-
 ```{r}
-# Extract parameter estimates from model2 (Log-logistic Model)
-beta_hat <- model4$coef
+# Extract parameter estimates from Model 1 (Log-logistic)
+beta_hat <- model1_log$coef
 alpha <- beta_hat[1] +
-  beta_hat[2] * data_mutated$MSI_SCORE +
-  beta_hat[3] * data_mutated$MUTATION_COUNT +
-  beta_hat[4] * data_mutated$FRACTION_GENOME_ALTERED +
-  beta_hat[5] * c(data_mutated$SMOKER == "Former") +
-  beta_hat[5] * c(data_mutated$SMOKER == "Never")
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * c(data_mutated$RACE == "BLACK OR AFRICAN AMERICAN") +
+  beta_hat[4] * c(data_mutated$RACE == "NATIVE AMERICAN-AM IND/ALASKA") +
+  beta_hat[5] * c(data_mutated$RACE == "OTHER") +
+  beta_hat[6] * c(data_mutated$RACE == "WHITE") +
+  beta_hat[7] * c(data_mutated$SEX == "Male") +
+  beta_hat[8] * c(data_mutated$SMOKER == "Former") +
+  beta_hat[9] * c(data_mutated$SMOKER == "Never") +
+  beta_hat[10] * data_mutated$MSI_SCORE +
+  beta_hat[11] * data_mutated$MUTATION_COUNT +
+  beta_hat[12] * data_mutated$FRACTION_GENOME_ALTERED +
+  beta_hat[13] * c(data_mutated$GENE_PANEL == "IMPACT410") +
+  beta_hat[14] * c(data_mutated$GENE_PANEL == "IMPACT468") +
+  beta_hat[15] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[16] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[17] * c(data_mutated$INTRAVESICAL_TREATMENT == "Both") +
+  beta_hat[18] * c(data_mutated$INTRAVESICAL_TREATMENT == "Chemo") +
+  beta_hat[19] * c(data_mutated$INTRAVESICAL_TREATMENT == "Naive") +
+  beta_hat[20] * data_mutated$SAMPLE_COVERAGE +
+  beta_hat[21] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[22] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[23] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[24] * data_mutated$TUMOR_PURITY
 
-tau <- model4$scale
+tau <- model1_log$scale
+t <- data_mutated$MONTHS
+delta <- data_mutated$STATUS
+
+# Compute Cox-Snell residuals
+cs.residuals <- -log((1/(1+exp((log(t)-alpha)/tau)))) + 1 - delta
+
+# Add residuals to the dataset for plotting
+data_res <- data_mutated %>%
+  mutate(cs_residuals = cs.residuals)
+
+# 1. Plot residuals vs SEX
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 2. Plot residuals vs SMOKER
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 3. Compare residuals to an exponential distribution
+# Histogram of residuals
+ggplot(data_res, aes(x = cs_residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
+  stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
+  labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
+       x = "Cox-Snell Residuals", y = "Density") +
+  theme_minimal()
+
+# 4. Summary statistics for residuals
+cat("Mean of residuals:", mean(cs.residuals), "\n")
+cat("Expected mean under EXP(1): 1\n")
+cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
+cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
+```
+
+```{r}
+# Extract parameter estimates from Model 2
+beta_hat <- model2_log$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * data_mutated$MUTATION_COUNT +
+  beta_hat[4] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[5] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[6] * c(data_mutated$INTRAVESICAL_TREATMENT == "Both") +
+  beta_hat[7] * c(data_mutated$INTRAVESICAL_TREATMENT == "Chemo") +
+  beta_hat[8] * c(data_mutated$INTRAVESICAL_TREATMENT == "Naive") +
+  beta_hat[9] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[10] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[11] * c(data_mutated$SPECIMEN_STAGE == 3)
+
+tau <- model2_log$scale
+t <- data_mutated$MONTHS
+delta <- data_mutated$STATUS
+
+# Compute Cox-Snell residuals
+cs.residuals <- -log((1/(1+exp((log(t)-alpha)/tau)))) + 1 - delta
+
+# Add residuals to the dataset for plotting
+data_res <- data_mutated %>%
+  mutate(cs_residuals = cs.residuals)
+
+# 1. Plot residuals vs SEX
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 2. Plot residuals vs SMOKER
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 3. Compare residuals to an exponential distribution
+# Histogram of residuals
+ggplot(data_res, aes(x = cs_residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
+  stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
+  labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
+       x = "Cox-Snell Residuals", y = "Density") +
+  theme_minimal()
+
+# 4. Summary statistics for residuals
+cat("Mean of residuals:", mean(cs.residuals), "\n")
+cat("Expected mean under EXP(1): 1\n")
+cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
+cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
+```
+
+```{r}
+# Extract parameter estimates from Model 3 (Log-logistic Model)
+beta_hat <- model3_log$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * data_mutated$MUTATION_COUNT +
+  beta_hat[4] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[5] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[6] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[7] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[8] * c(data_mutated$SPECIMEN_STAGE == 3)
+
+tau <- model3_log$scale
 t <- data_mutated$MONTHS
 delta <- data_mutated$STATUS
 
@@ -646,24 +1016,24 @@ delta <- data_mutated$STATUS
 cs.residuals <- -log((1/(1+exp((log(t)-alpha)/tau)))) + 1 - delta
 
 # Add residuals to the dataset for plotting
-data_mutated <- data_mutated %>%
+data_res <- data_mutated %>%
   mutate(cs_residuals = cs.residuals)
 
 # 1. Plot residuals vs SEX
-ggplot(data_mutated, aes(x = SEX, y = cs_residuals)) +
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
   geom_boxplot() +
   labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
   theme_minimal()
 
 # 2. Plot residuals vs SMOKER
-ggplot(data_mutated, aes(x = SMOKER, y = cs_residuals)) +
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
   geom_boxplot() +
   labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
   theme_minimal()
 
 # 3. Compare residuals to an exponential distribution
 # Histogram of residuals
-ggplot(data_mutated, aes(x = cs_residuals)) +
+ggplot(data_res, aes(x = cs_residuals)) +
   geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
   stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
   labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
@@ -677,19 +1047,168 @@ cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
 cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
 ```
 
-Residual analysis for Weibull Model
+##### Weibull AFT Model
 
 ```{r}
-# Extract parameter estimates from model2 (Weibull Model)
-beta_hat <- model5$coef
-alpha <- beta_hat[1] +
-  beta_hat[2] * data_mutated$MSI_SCORE +
-  beta_hat[3] * data_mutated$MUTATION_COUNT +
-  beta_hat[4] * data_mutated$FRACTION_GENOME_ALTERED +
-  beta_hat[5] * c(data_mutated$SMOKER == "Former") +
-  beta_hat[5] * c(data_mutated$SMOKER == "Never")
+# Model 1: Full Model (Lognormal AFT)
+model1_weib <- survreg(Surv(MONTHS, STATUS) ~ .,
+                  data = data_mutated[, -1], dist = "weibull")
 
-tau <- model5$scale
+summary(model1_weib)
+```
+
+```{r}
+# Try Weibull?
+model2_weib <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT + INTRAVESICAL_TREATMENT + SPECIMEN_STAGE,
+                  data = data_mutated, dist = "weibull")
+
+summary(model2_weib)
+```
+
+```{r}
+# Try Weibull?
+model3_weib <- survreg(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                    SYSTEMIC_TREATMENT + SPECIMEN_STAGE,
+                  data = data_mutated, dist = "weibull")
+
+summary(model3_weib)
+```
+
+```{r}
+# Extract parameter estimates from Model 1
+beta_hat <- model1_weib$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * c(data_mutated$RACE == "BLACK OR AFRICAN AMERICAN") +
+  beta_hat[4] * c(data_mutated$RACE == "NATIVE AMERICAN-AM IND/ALASKA") +
+  beta_hat[5] * c(data_mutated$RACE == "OTHER") +
+  beta_hat[6] * c(data_mutated$RACE == "WHITE") +
+  beta_hat[7] * c(data_mutated$SEX == "Male") +
+  beta_hat[8] * c(data_mutated$SMOKER == "Former") +
+  beta_hat[9] * c(data_mutated$SMOKER == "Never") +
+  beta_hat[10] * data_mutated$MSI_SCORE +
+  beta_hat[11] * data_mutated$MUTATION_COUNT +
+  beta_hat[12] * data_mutated$FRACTION_GENOME_ALTERED +
+  beta_hat[13] * c(data_mutated$GENE_PANEL == "IMPACT410") +
+  beta_hat[14] * c(data_mutated$GENE_PANEL == "IMPACT468") +
+  beta_hat[15] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[16] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[17] * c(data_mutated$INTRAVESICAL_TREATMENT == "Both") +
+  beta_hat[18] * c(data_mutated$INTRAVESICAL_TREATMENT == "Chemo") +
+  beta_hat[19] * c(data_mutated$INTRAVESICAL_TREATMENT == "Naive") +
+  beta_hat[20] * data_mutated$SAMPLE_COVERAGE +
+  beta_hat[21] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[22] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[23] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[24] * data_mutated$TUMOR_PURITY
+
+tau <- model1_weib$scale
+t <- data_mutated$MONTHS
+delta <- data_mutated$STATUS
+
+# Compute Cox-Snell residuals
+cs.residuals <- exp((log(t) - alpha) / tau) + 1 - delta
+
+# Add residuals to the dataset for plotting
+data_res <- data_mutated %>%
+  mutate(cs_residuals = cs.residuals)
+
+# 1. Plot residuals vs SEX
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 2. Plot residuals vs SMOKER
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 3. Compare residuals to an exponential distribution
+# Histogram of residuals
+ggplot(data_res, aes(x = cs_residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
+  stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
+  labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
+       x = "Cox-Snell Residuals", y = "Density") +
+  theme_minimal()
+
+# 4. Summary statistics for residuals
+cat("Mean of residuals:", mean(cs.residuals), "\n")
+cat("Expected mean under EXP(1): 1\n")
+cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
+cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
+```
+
+```{r}
+# Extract parameter estimates from Model 2
+beta_hat <- model2_weib$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * data_mutated$MUTATION_COUNT +
+  beta_hat[4] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[5] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[6] * c(data_mutated$INTRAVESICAL_TREATMENT == "Both") +
+  beta_hat[7] * c(data_mutated$INTRAVESICAL_TREATMENT == "Chemo") +
+  beta_hat[8] * c(data_mutated$INTRAVESICAL_TREATMENT == "Naive") +
+  beta_hat[9] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[10] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[11] * c(data_mutated$SPECIMEN_STAGE == 3)
+
+tau <- model2_weib$scale
+t <- data_mutated$MONTHS
+delta <- data_mutated$STATUS
+
+# Compute Cox-Snell residuals
+cs.residuals <- exp((log(t) - alpha) / tau) + 1 - delta
+
+# Add residuals to the dataset for plotting
+data_res <- data_mutated %>%
+  mutate(cs_residuals = cs.residuals)
+
+# 1. Plot residuals vs SEX
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 2. Plot residuals vs SMOKER
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
+  geom_boxplot() +
+  labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
+  theme_minimal()
+
+# 3. Compare residuals to an exponential distribution
+# Histogram of residuals
+ggplot(data_res, aes(x = cs_residuals)) +
+  geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
+  stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
+  labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
+       x = "Cox-Snell Residuals", y = "Density") +
+  theme_minimal()
+
+# 4. Summary statistics for residuals
+cat("Mean of residuals:", mean(cs.residuals), "\n")
+cat("Expected mean under EXP(1): 1\n")
+cat("90th quantile of residuals:", quantile(cs.residuals, 0.9), "\n")
+cat("Expected 90th quantile under EXP(1):", -log(1 - 0.9), "\n")
+```
+
+```{r}
+# Extract parameter estimates from model3 (Weibull Model)
+beta_hat <- model3_weib$coef
+alpha <- beta_hat[1] +
+  beta_hat[2] * data_mutated$AGE_AT_DX +
+  beta_hat[3] * data_mutated$MUTATION_COUNT +
+  beta_hat[4] * c(data_mutated$SYSTEMIC_TREATMENT == "Immunotherapy") +
+  beta_hat[5] * c(data_mutated$SYSTEMIC_TREATMENT == "Naive") +
+  beta_hat[6] * c(data_mutated$SPECIMEN_STAGE == 2) +
+  beta_hat[7] * c(data_mutated$SPECIMEN_STAGE == 3) +
+  beta_hat[8] * c(data_mutated$SPECIMEN_STAGE == 3)
+
+tau <- model3_weib$scale
 t <- data_mutated$MONTHS
 delta <- data_mutated$STATUS
 
@@ -697,24 +1216,24 @@ delta <- data_mutated$STATUS
 cs.residuals <- exp((log(t) - alpha) / tau) + 1 - delta
 
 # Add residuals to the dataset for plotting
-data_mutated <- data_mutated %>%
+data_res <- data_mutated %>%
   mutate(cs_residuals = cs.residuals)
 
 # 1. Plot residuals vs SEX
-ggplot(data_mutated, aes(x = SEX, y = cs_residuals)) +
+ggplot(data_res, aes(x = SEX, y = cs_residuals)) +
   geom_boxplot() +
   labs(title = "Cox-Snell Residuals by SEX", x = "SEX", y = "Cox-Snell Residuals") +
   theme_minimal()
 
 # 2. Plot residuals vs SMOKER
-ggplot(data_mutated, aes(x = SMOKER, y = cs_residuals)) +
+ggplot(data_res, aes(x = SMOKER, y = cs_residuals)) +
   geom_boxplot() +
   labs(title = "Cox-Snell Residuals by SMOKER", x = "SMOKER", y = "Cox-Snell Residuals") +
   theme_minimal()
 
 # 3. Compare residuals to an exponential distribution
 # Histogram of residuals
-ggplot(data_mutated, aes(x = cs_residuals)) +
+ggplot(data_res, aes(x = cs_residuals)) +
   geom_histogram(aes(y = ..density..), bins = 20, fill = "blue", alpha = 0.5) +
   stat_function(fun = dexp, args = list(rate = 1), color = "red", linetype = "dashed") +
   labs(title = "Histogram of Cox-Snell Residuals vs Exponential(1)",
@@ -737,64 +1256,106 @@ None of the residuals seem to be fitting the data well. Need to consider other c
 ### Fitting COX models
 
 ```{r}
-model_cox_all_predictors <- coxph(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
-                  data=data_mutated)
+data_mutated <- data_mutated %>% 
+  mutate(SYSTEMIC_TREATMENT = factor(SYSTEMIC_TREATMENT))
+```
+
+
+```{r}
+model_cox_all_predictors <- coxph(Surv(MONTHS, STATUS) ~ .,
+                  data= data_mutated[, -1])
 summary(model_cox_all_predictors)
 ```
 
+Note that the estimated coefficients does not really make sense in this model. Some coefficients have value of >10 which does not make sense in an exponential model.
+
 ```{r}
 # remove predictors with p-value > 0.05 - removed SEX  
-model_cox_2 <- coxph(Surv(MONTHS, STATUS) ~ MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
+model_cox_2 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                       SYSTEMIC_TREATMENT + INTRAVESICAL_TREATMENT + 
+                       SPECIMEN_STAGE + TUMOR_PURITY,
                   data=data_mutated)
 summary(model_cox_2)
 ```
 
 ```{r}
 # try removing MSI_score
-model_cox_3 <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER,
+model_cox_3 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                       SYSTEMIC_TREATMENT + SPECIMEN_STAGE + TUMOR_PURITY,
                   data=data_mutated)
 summary(model_cox_3)
+```
+
+```{r}
+# try removing MSI_score
+model_cox_4 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + TUMOR_PURITY,
+                  data=data_mutated)
+
+summary(model_cox_4)
+```
+
+```{r}
+# try removing MSI_score
+model_cox_5 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT,
+                  data=data_mutated)
+
+summary(model_cox_5)
 ```
 
 ### Choose Best Model 
 
 ```{r}
-lr_summary <- 
-  tibble(model=c(1,2,3),
-         n_param = c(6, 5, 4),
-         loglik = c(model_cox_all_predictors$loglik[2], model_cox_2$loglik[2], model_cox_3$loglik[2]),
-         CompToModel=c(NA, 1, 2),
-         obsLRstat=c(NA,-2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),-2*(model_cox_3$loglik[2]-model_cox_2$loglik[2])),
-         df_for_comp = c(NA, 6-4, 4-2),
+lr_summary_cox <- 
+  tibble(model=c(1, 2, 3, 4, 5, 5),
+         n_param = c(23, 11, 8, 3, 2, 2),
+         loglik = c(model_cox_all_predictors$loglik[2], 
+                    model_cox_2$loglik[2], 
+                    model_cox_3$loglik[2], 
+                    model_cox_4$loglik[2], 
+                    model_cox_5$loglik[2], 
+                    model_cox_5$loglik[2]),
+         CompToModel=c(NA, 1, 2, 3, 4, 3),
+         obsLRstat=c(NA,
+                     -2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),
+                     -2*(model_cox_3$loglik[2]-model_cox_2$loglik[2]),
+                     -2*(model_cox_4$loglik[2]-model_cox_3$loglik[2]),
+                     -2*(model_cox_5$loglik[2]-model_cox_4$loglik[2]),
+                     -2*(model_cox_5$loglik[2]-model_cox_3$loglik[2])),
+         df_for_comp = c(NA, 23-11, 11-8, 8-3, 3-2, 8-2),
          pvalue = c(NA,
                     pchisq(-2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),
-                           df=1, lower.tail=FALSE),
+                           df= 12, lower.tail=FALSE),
                     pchisq(-2*(model_cox_3$loglik[2]-model_cox_2$loglik[2]),
-                           df=1, lower.tail=FALSE)))
+                           df= 3, lower.tail=FALSE),
+                    pchisq(-2*(model_cox_4$loglik[2]-model_cox_3$loglik[2]),
+                           df= 5, lower.tail=FALSE),
+                    pchisq(-2*(model_cox_5$loglik[2]-model_cox_4$loglik[2]),
+                           df= 1, lower.tail=FALSE),
+                    pchisq(-2*(model_cox_5$loglik[2]-model_cox_3$loglik[2]),
+                           df= 6, lower.tail=FALSE)))
 
-kable(lr_summary)
+kable(lr_summary_cox)
 ```
 
-$H_0:$ Model 1 is as good as Model 2 vs $H_A:$ Model 1 is not as good as Model 2.
+Based on the Likelihood Ratio Test, we would likely consider Model 3 or Model 5. Model 1 does not make sense in its modelling. Model 2 does not seem significant enough, suggesting Model 3 would be sufficient. The idea is consistent when comparing Model 3 and 4. 
 
-At 5% significance, we don't have evidence against the null hypothesis that Model 1 is as good as Model 2. So we should use model 2.  
+However, note that Model 4 does not seem to be significant enough when compared with Model 5. When testing Model 3 and Model 5, however, we see that Model 3 is indeed chosen.
 
-Similarly, when $H_0:$ Model 2 is as good as Model 3  vs $H_A:$ Model 2 is not as good as Model 3.
-
-At 5% significance, we have some evidence against the null hypothesis that Model 2 is as good as Model 3. Hence, let's settle on Model 2.  
-
-**Therefore, we should use our second model, which includes sex and smoker as our predictors. **
+**Therefore, we should use our third model, which includes age at diagnosis, mutation count, specimen stage and tumor purity as our predictors.**
 
 ### obtain performance amongst female vs male
 
 ```{r}
- # Assuming `model_cox_3` is your Cox proportional hazards model
+# Assuming `model_cox_3` is your Cox proportional hazards model
 
 # Prepare new data to predict survival for both Male and Female, with SMOKER = "Active"
-newdata <- data.frame(MSI_SCORE = median(data_mutated$MSI_SCORE),
-                      MUTATION_COUNT = median(data_mutated$MUTATION_COUNT),
-                      FRACTION_GENOME_ALTERED = median(data_mutated$FRACTION_GENOME_ALTERED),
-                      SMOKER = c("Active", "Former", "Never"))
+newdata <- data.frame(
+  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 4),
+  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 4),
+  SYSTEMIC_TREATMENT = rep("Chemotherapy", 4),
+  SPECIMEN_STAGE = factor(c(1, 2, 3, 4), levels = levels(data_mutated$SPECIMEN_STAGE)),
+  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 4)
+)
 
 # Use survfit to compute survival curves
 sf_cox <- survfit(model_cox_3, newdata = newdata, data = data_mutated)
@@ -805,29 +1366,33 @@ ggsurvplot(sf_cox,
            censor.shape = "+",      # Censor symbol
            risk.table = FALSE,      # Don't show the risk table
            legend.title = "",       # No title for legend
-           legend.labs = c("Active", "Former", "Never"), # Labels for the survival curves
+           legend.labs = c(1, 2, 3, 4), # Labels for the survival curves
            title = "Estimated Survival Curves for Each Smoking Status for Females") # Plot title
 
 ```
 
 ```{r}
- # Assuming `model_cox_2` is your Cox proportional hazards model
+# Create newdata for SYSTEMIC_TREATMENT
+newdata <- data.frame(
+  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 3),
+  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 3),
+  SYSTEMIC_TREATMENT = factor(c("Naive", "Chemotherapy", "Immunotherapy"),
+                              levels = levels(data_mutated$SYSTEMIC_TREATMENT)),
+  SPECIMEN_STAGE = factor(rep(3, 3), levels = levels(data_mutated$SPECIMEN_STAGE)),
+  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 3)
+)
 
-# Prepare new data to predict survival for both Male and Female, with SMOKER = "Active"
-newdata <- data.frame(SEX = c("Male"), SMOKER = c("Active", "Former", "Never"))
-
-# Use survfit to compute survival curves
+# Compute survival curves
 sf_cox <- survfit(model_cox_3, newdata = newdata, data = data_mutated)
 
-# Plot survival curves using ggsurvplot
+# Plot survival curves
 ggsurvplot(sf_cox, 
-           conf.int = FALSE,        # No confidence intervals
-           censor.shape = "|",      # Censor symbol
-           risk.table = FALSE,      # Don't show the risk table
-           legend.title = "",       # No title for legend
-           legend.labs = c("Active", "Former", "Never"), # Labels for the survival curves
-           title = "Estimated Survival Curves for Each Smoking Status for Males") # Plot title
-
+           conf.int = FALSE,        
+           censor.shape = "+",      
+           risk.table = FALSE,      
+           legend.title = "Systemic Treatment", 
+           legend.labs = c("Naive", "Chemotherapy", "Immunotherapy"),
+           title = "Estimated Survival Curves for Systemic Treatments")
 ```
 
 ```{r}
@@ -837,45 +1402,75 @@ mean(data_mutated$STATUS)
 
 ```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
 # PH Assumption Check
-km_former <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SMOKER =="Former"))
-km_active <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SMOKER=="Active"))
-km_never <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SMOKER=="Never"))
+km_spec_stg1 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SPECIMEN_STAGE == 1))
+km_spec_stg2 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SPECIMEN_STAGE == 2))
+km_spec_stg3 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SPECIMEN_STAGE == 3))
+km_spec_stg4 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SPECIMEN_STAGE == 4))
 
-tibble(time = c(km_former$time, km_active$time, km_never$time),
-       surv = c(km_former$surv, km_active$surv, km_never$surv),
-       group = c(rep("Former", length(km_former$time)), 
-                 rep("Active", length(km_active$time)),
-                 rep("Never", length(km_never$time)))
+tibble(time = c(km_spec_stg1$time, km_spec_stg2$time, km_spec_stg3$time, km_spec_stg4$time),
+       surv = c(km_spec_stg1$surv, km_spec_stg2$surv, km_spec_stg3$surv, km_spec_stg4$surv),
+       group = c(rep(1, length(km_spec_stg1$time)), 
+                 rep(2, length(km_spec_stg2$time)),
+                 rep(3, length(km_spec_stg3$time)),
+                 rep(4, length(km_spec_stg4$time)))
+       ) %>% 
+  ggplot(aes(x = log(time), y = log(-log(surv)), 
+             colour = factor(group), group = group)) +
+  geom_step() +
+  labs(x = "Log Survival Time",
+       y = "Log Cummulative Hazard",
+       colour = "Specimen Stage",
+       )
+```
+Note that the PH assumption seems to be violated here. Stratify based on specimen stage then.
+
+```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
+# PH Assumption Check
+km_naive <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SYSTEMIC_TREATMENT == "Naive"))
+km_chemo <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SYSTEMIC_TREATMENT == "Chemotherapy"))
+km_immuno <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+              subset = (SYSTEMIC_TREATMENT == "Immunotherapy"))
+
+tibble(time = c(km_naive$time, km_chemo$time, km_immuno$time),
+       surv = c(km_naive$surv, km_chemo$surv, km_immuno$surv),
+       group = c(rep("Naive", length(km_naive$time)), 
+                 rep("Chemo", length(km_chemo$time)),
+                 rep("Immuno", length(km_immuno$time)))
        ) %>% 
   ggplot(aes(x = log(time), y = log(-log(surv)), 
              colour = group, group = group)) +
   geom_step() +
   labs(x = "Log Survival Time",
        y = "Log Cummulative Hazard",
-       colour = "Treatment Groups",
+       colour = "Systemic Treatment Groups",
        )
 ```
-Note that the PH assumption seems to be violated here. Stratify based on Smoker then.
+
+Seems good for systemic treatment groups. Note that immunotherapy seems missing due to limited sample size.
 
 ```{r}
-# Stratify Model 2 on Smoker
-model_cox_4 <- coxph(Surv(MONTHS, STATUS) ~ MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + strata(SMOKER),
-                  data=data_mutated)
+# Stratify Model 3 on Specimen Stage
+model_cox_3_strata <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
+                              SYSTEMIC_TREATMENT + strata(SPECIMEN_STAGE) + 
+                              TUMOR_PURITY,
+                            data=data_mutated)
 
-summary(model_cox_4)
+summary(model_cox_3_strata)
 ```
 
-
 ```{r}
-cox.resid <- residuals(model_cox_4, type = "deviance")
+cox.resid <- residuals(model_cox_3_strata, type = "deviance")
 
 # MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER
 
 # Plot residuals over covariate MSI Score
-fig.res1 <- tibble(number = data_mutated$MSI_SCORE, 
+fig.res1 <- tibble(number = data_mutated$AGE_AT_DX, 
                     residuals = cox.resid) %>% 
   ggplot(aes(x = number, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
@@ -889,14 +1484,14 @@ fig.res2 <- tibble(number = data_mutated$MUTATION_COUNT,
   geom_point()
 
 # Plot residuals over covariate Fraction Genome Altered
-fig.res3 <- tibble(number = data_mutated$FRACTION_GENOME_ALTERED, 
+fig.res3 <- tibble(number = data_mutated$SYSTEMIC_TREATMENT, 
                     residuals = cox.resid) %>% 
   ggplot(aes(x = number, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
-  geom_point()
+  geom_boxplot()
 
 # Plot with risk score
-fig.res5 <- tibble(risk.score = predict(model_cox_2), 
+fig.res4 <- tibble(risk.score = predict(model_cox_3_strata), 
                     residuals = cox.resid) %>% 
   ggplot(aes(x = risk.score, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
@@ -908,7 +1503,7 @@ fig.res6 <- tibble(residuals = cox.resid) %>%
   geom_histogram(binwidth = 0.5)
   
 ggarrange(fig.res1, fig.res2, fig.res3,
-          fig.res4, fig.res5, fig.res6, ncol = 3, nrow = 2)
+          fig.res4, fig.res6, ncol = 3, nrow = 2)
 
 qqnorm(cox.resid)
 abline(0, 1, lty = 2)

@@ -13,7 +13,6 @@ library(tidyverse)
 library(janitor)
 library(survminer)
 library(knitr)
-
 ```
 
 ```{r, warning=FALSE, message=FALSE}
@@ -46,36 +45,6 @@ newnames <- c("patientId", "sampleId", "AGE_AT_DX", "AGE_AT_SEQ_REPORTED_YEARS",
 
 colnames(data) <- newnames
 ```
-
-## Data Exploration 
-```{r}
-# website - has the pie chart distribution 
-
-# Create individual bar plots for each variable
-# 1. Sex
-p1 <- ggplot(data, aes(x = SEX)) +
-  geom_bar() +
-  labs(title = "Distribution by Sex", x = "Sex", y = "Count") +
-  theme_minimal()
-
-
-# 4. Smoker
-p2 <- ggplot(data, aes(x = SMOKER)) +
-  geom_bar() +
-  labs(title = "Distribution by Smoking Status", x = "Smoking Status", y = "Count") +
-  theme_minimal()
-
-# Combine plots using the patchwork library if you want them in a grid
-library(patchwork)
-combined_plot <- p1 + p2 + plot_layout(ncol = 2)
-print(combined_plot)
-```
-
-
-```{r}
-# we already have fraction of geno altered and MSI score on the website - just include this
-```
-
 
 
 ## AFT Models
@@ -168,7 +137,7 @@ model_loglogistic <- survreg(Surv(MONTHS, STATUS) ~ SEX + MSI_SCORE + MUTATION_C
 summary(model_loglogistic)
 ```
 
-## Exploring Different Predictors (EDA)
+## Exploring Different Predictors (EDA) 
 
 ```{r}
 # Visualize scatter plots for individual covariates
@@ -251,6 +220,53 @@ data_mutated %>%
 
 For the three numerical covariates show no clear relationship with the log(months), although this may be due to the large proportion of censored data.
 
+
+
+```{r}
+# distribution of variables regardless of survival status
+
+# Sex
+p1 <- ggplot(data_mutated, aes(x = SEX)) +
+  geom_bar( fill = "steelblue",) +
+  labs(title = "Distribution by Sex", x = "Sex", y = "Count") +
+  theme_minimal()
+
+# Mutation Count
+p3 <- ggplot(data_mutated, aes(x = MUTATION_COUNT)) +
+  geom_histogram(binwidth = 12.5, color = "black", fill = "steelblue", alpha = 0.7) +
+  scale_x_continuous(breaks = seq(0, 250, by = 50)) +  # Set regular x-axis breaks
+  labs(title = "Distribution by Mutation Count", x = "Mutation Count", y = "Count") +
+  theme_minimal()
+
+
+# Fraction of genomed altered 
+p4 <- ggplot(data_mutated, aes(x = FRACTION_GENOME_ALTERED)) +
+  geom_histogram(binwidth = 0.05, color = "black", fill = "steelblue", alpha = 0.7) +
+  scale_x_continuous(breaks = seq(0, 1, by = 0.1)) +  # Set regular x-axis breaks
+  labs(title = "Distribution by Fraction of Genome Altered", x = "Fraction of Genome Altered", y = "Count") +
+  theme_minimal()
+
+# MSI Score 
+p5 <- ggplot(data_mutated, aes(x = MSI_SCORE)) +
+  geom_histogram(binwidth = 2.5, color = "black", fill = "steelblue", alpha = 0.7) +
+  scale_x_continuous(breaks = seq(0, 30, by = 5)) +  # Set regular x-axis breaks  labs(title = "Distribution by MSI Score", x = "MSI Score", y = "Count") +
+  theme_minimal()
+
+# Smoker
+p2 <- ggplot(data_mutated, aes(x = SMOKER)) +
+  geom_bar( fill = "steelblue") +
+  labs(title = "Distribution by Smoking Status", x = "Smoking Status", y = "Count") +
+  theme_minimal()
+
+# Combine plots using the patchwork library if you want them in a grid
+library(patchwork)
+combined_plot <- p1 + p2 + p3 + plot_layout(ncol = 2)
+print(combined_plot)
+combined_plot <-  p4 + p5 + plot_layout(ncol = 2)
+print(combined_plot)
+
+```
+
 ```{r}
 # Kaplan-Meier Plot to visualize survival across groups
 
@@ -295,7 +311,7 @@ ggsurvplot(km_fit_race, data = data_mutated, pval = TRUE, conf.int = TRUE,
            legend.labs = c("Asian", "African American", "Native American", "Other", "White"))
 ```
 
-The active smoker seem to have a lower survival probabilty at a given time comparing to the two other groups. Female seem to have a lower survival probability at a given time compare to male.
+The active smoker seem to have a lower survival probability at a given time comparing to the two other groups. Female seem to have a lower survival probability at a given time compare to male.
 
 We see that there are some significant differences in survival function in smoking status, systemic treatment, and intravesical treatment (from p-value, what test?).
 
@@ -529,6 +545,8 @@ p_value_scale <- pchisq(lr_stat_scale, df = 2, lower.tail = FALSE)  # df = (3 gr
 cat("Scale Equality LR Test Statistic:", lr_stat_scale, "\nP-value:", p_value_scale, "\n")
 
 ```
+
+
 At 0.05 level of significance, we have strong evidence against the null hypothesis that the $H_0:\tau_1=\tau_2$, so we can conclude that the three groups have different log scale parameter
 
 #### Sex
@@ -1343,62 +1361,14 @@ However, note that Model 4 does not seem to be significant enough when compared 
 
 **Therefore, we should use our third model, which includes age at diagnosis, mutation count, specimen stage and tumor purity as our predictors.**
 
-### obtain performance amongst female vs male
 
-```{r}
-# Assuming `model_cox_3` is your Cox proportional hazards model
-
-# Prepare new data to predict survival for both Male and Female, with SMOKER = "Active"
-newdata <- data.frame(
-  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 4),
-  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 4),
-  SYSTEMIC_TREATMENT = rep("Chemotherapy", 4),
-  SPECIMEN_STAGE = factor(c(1, 2, 3, 4), levels = levels(data_mutated$SPECIMEN_STAGE)),
-  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 4)
-)
-
-# Use survfit to compute survival curves
-sf_cox <- survfit(model_cox_3, newdata = newdata, data = data_mutated)
-
-# Plot survival curves using ggsurvplot
-ggsurvplot(sf_cox, 
-           conf.int = FALSE,        # No confidence intervals
-           censor.shape = "+",      # Censor symbol
-           risk.table = FALSE,      # Don't show the risk table
-           legend.title = "",       # No title for legend
-           legend.labs = c(1, 2, 3, 4), # Labels for the survival curves
-           title = "Estimated Survival Curves for Each Smoking Status for Females") # Plot title
-
-```
-
-```{r}
-# Create newdata for SYSTEMIC_TREATMENT
-newdata <- data.frame(
-  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 3),
-  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 3),
-  SYSTEMIC_TREATMENT = factor(c("Naive", "Chemotherapy", "Immunotherapy"),
-                              levels = levels(data_mutated$SYSTEMIC_TREATMENT)),
-  SPECIMEN_STAGE = factor(rep(3, 3), levels = levels(data_mutated$SPECIMEN_STAGE)),
-  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 3)
-)
-
-# Compute survival curves
-sf_cox <- survfit(model_cox_3, newdata = newdata, data = data_mutated)
-
-# Plot survival curves
-ggsurvplot(sf_cox, 
-           conf.int = FALSE,        
-           censor.shape = "+",      
-           risk.table = FALSE,      
-           legend.title = "Systemic Treatment", 
-           legend.labs = c("Naive", "Chemotherapy", "Immunotherapy"),
-           title = "Estimated Survival Curves for Systemic Treatments")
-```
 
 ```{r}
 # Proportion of Individuals Censored
 mean(data_mutated$STATUS)
 ```
+
+### PH assumption check
 
 ```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
 # PH Assumption Check
@@ -1470,23 +1440,23 @@ cox.resid <- residuals(model_cox_3_strata, type = "deviance")
 # MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER
 
 # Plot residuals over covariate MSI Score
-fig.res1 <- tibble(number = data_mutated$AGE_AT_DX, 
+fig.res1 <- tibble(AGE_AT_DX = data_mutated$AGE_AT_DX, 
                     residuals = cox.resid) %>% 
-  ggplot(aes(x = number, y = residuals)) +
+  ggplot(aes(x = AGE_AT_DX, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_point()
 
 # Plot residuals over covariate Mutation Count
-fig.res2 <- tibble(number = data_mutated$MUTATION_COUNT, 
+fig.res2 <- tibble(MUTATION_COUNT = data_mutated$MUTATION_COUNT, 
                     residuals = cox.resid) %>% 
-  ggplot(aes(x = number, y = residuals)) +
+  ggplot(aes(x = MUTATION_COUNT, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_point()
 
 # Plot residuals over covariate Fraction Genome Altered
-fig.res3 <- tibble(number = data_mutated$SYSTEMIC_TREATMENT, 
+fig.res3 <- tibble(SYSTEMIC_TREATMENT = data_mutated$SYSTEMIC_TREATMENT, 
                     residuals = cox.resid) %>% 
-  ggplot(aes(x = number, y = residuals)) +
+  ggplot(aes(x = SYSTEMIC_TREATMENT, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_boxplot()
 
@@ -1509,12 +1479,57 @@ qqnorm(cox.resid)
 abline(0, 1, lty = 2)
 ```
 
-The residuals do not seem to follow the standard normal distribution. Quite a large amount of deviation from the standard normal line and as seen in the histogram.
+### obtain performance amongst different specimen stages amongst chemotherapy patients with all other median valued covariates
 
-While it is somewhat expected given the amount of censored data, it seems that the model is a poor fit. Consider other variables??
+```{r}
+newdata <- data.frame(
+  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 4),
+  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 4),
+  SYSTEMIC_TREATMENT = rep("Chemotherapy", 4),
+  SPECIMEN_STAGE = factor(c(1, 2, 3, 4), levels = levels(data_mutated$SPECIMEN_STAGE)),
+  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 4)
+)
 
-optional- TODO : Make Comparison to KM -estimates with the plots above (male vs. female) ? 
-TODO : residual analysis for COX 
-TODO : compare how the results hold amongst Cox and AFT. 
+# Use survfit to compute survival curves
+sf_cox <- survfit(model_cox_3_strata, newdata = newdata, data = data_mutated)
+
+# Plot survival curves using ggsurvplot
+ggsurvplot(sf_cox, 
+           conf.int = FALSE,        # No confidence intervals
+           censor.shape = "+",      # Censor symbol
+           risk.table = FALSE,      # Don't show the risk table
+           legend.title = "",       # No title for legend
+           legend.labs = c(1, 2, 3, 4), # Labels for the survival curves
+           title = "Estimated Survival Curves for each Specimen stage") # Plot title
+
+```
+### obtain performance for different systemic treatments on patients with median values of other covariates 
+ 
+```{r}
+# Create newdata for SYSTEMIC_TREATMENT
+newdata <- data.frame(
+  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 3),
+  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 3),
+  SYSTEMIC_TREATMENT = factor(c("Naive", "Chemotherapy", "Immunotherapy"),
+                              levels = levels(data_mutated$SYSTEMIC_TREATMENT)),
+  SPECIMEN_STAGE = factor(rep(3, 3), levels = levels(data_mutated$SPECIMEN_STAGE)),
+  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 3)
+)
+
+# Compute survival curves
+sf_cox <- survfit(model_cox_3_strata, newdata = newdata, data = data_mutated)
+
+# Plot survival curves
+ggsurvplot(sf_cox, 
+           conf.int = FALSE,        
+           censor.shape = "+",      
+           risk.table = FALSE,      
+           legend.title = "Systemic Treatment", 
+           legend.labs = c("Naive", "Chemotherapy", "Immunotherapy"),
+           title = "Estimated Survival Curves for Systemic Treatments")
+```
+
+
+
 
 

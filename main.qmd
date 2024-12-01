@@ -103,6 +103,14 @@ data_mutated <- data %>%
 head(data_mutated)
   
 ```
+```{r}
+#get ranges
+
+range(data_mutated$MSI_SCORE)
+range(data_mutated$MUTATION_COUNT)
+range(data_mutated$FRACTION_GENOME_ALTERED)
+
+```
 
 ### Fitting AFT models
 
@@ -114,59 +122,71 @@ data_mutated %>%
   ggplot(aes(x = SEX, y = log(MONTHS))) +
   geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
   geom_boxplot(width = 0.1, alpha = 0.2) +
-  labs(x = "SEX", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by SEX") +
+  labs(x = "Sex", y = "Log of Survival Time (Months)", title = "Distribution of log(Months) by Sex") +
   theme_minimal()
 
 data_mutated %>% 
   mutate(status_cat = ifelse(STATUS == 1, "Failed", "Censored")) %>%
-  ggplot(aes(x = MSI_SCORE, y = log(MONTHS))) +
+  ggplot(aes(x = log(MSI_SCORE), y = log(MONTHS))) +
   geom_point(aes(shape = status_cat, color = status_cat)) +
   scale_shape_manual(values = c(17, 16)) +
-  scale_color_manual(values = c("red", "gray")) +
+  scale_color_manual(values = c("lightblue", "black")) +
+  labs(
+    x = "Log(MSI Score)",  # Updated x-axis label
+    y = "Log of Survival Time (Months)"  # Updated y-axis label
+  ) +
   theme_minimal()
 
 data_mutated %>% 
   mutate(status_cat = ifelse(STATUS == 1, "Failed", "Censored")) %>%
-  ggplot(aes(x = MUTATION_COUNT, y = log(MONTHS))) +
+  ggplot(aes(x = log(MUTATION_COUNT), y = log(MONTHS))) +
   geom_point(aes(shape = status_cat, color = status_cat)) +
   scale_shape_manual(values = c(17, 16)) +
-  scale_color_manual(values = c("red", "gray")) +
+  scale_color_manual(values = c("lightblue", "black")) +
+  labs(
+    x = "Log(Mutation Count)",  # Updated x-axis label
+    y = "Log of Survival Time (Months)"  # Updated y-axis label
+  ) +
   theme_minimal()
 
 data_mutated %>% 
   mutate(status_cat = ifelse(STATUS == 1, "Failed", "Censored")) %>%
-  ggplot(aes(x = FRACTION_GENOME_ALTERED, y = log(MONTHS))) +
+  ggplot(aes(x = log(FRACTION_GENOME_ALTERED), y = log(MONTHS))) +
   geom_point(aes(shape = status_cat, color = status_cat)) +
   scale_shape_manual(values = c(17, 16)) +
-  scale_color_manual(values = c("red", "gray")) +
+  scale_color_manual(values = c("lightblue", "black")) 
+  labs(
+    x = "Log(fraction of genomed altered)",  # Updated x-axis label
+    y = "Log of Survival Time (Months)"  # Updated y-axis label
+  ) +
   theme_minimal()
 
 data_mutated %>%
   ggplot(aes(x = SMOKER, y = log(MONTHS))) +
   geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
   geom_boxplot(width = 0.1, alpha = 0.2) +
-  labs(x = "Smoking Status", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Smoking Status") +
+  labs(x = "Smoking Status", y = "log(MONTHS)", title = "Distribution of log(months) by Smoking Status") +
   theme_minimal()
 
 data_mutated %>%
   ggplot(aes(x = INTRAVESICAL_TREATMENT, y = log(MONTHS))) +
   geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
   geom_boxplot(width = 0.1, alpha = 0.2) +
-  labs(x = "Intravesical Treatment", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Intravesical Treatment") +
+  labs(x = "Intravesical Treatment", y = "log(MONTHS)", title = "Distribution of log(months) by Intravesical Treatment") +
   theme_minimal()
 
 data_mutated %>%
   ggplot(aes(x = SYSTEMIC_TREATMENT, y = log(MONTHS))) +
   geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
   geom_boxplot(width = 0.1, alpha = 0.2) +
-  labs(x = "Systemic Treatment", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Systemic Treatment") +
+  labs(x = "Systemic Treatment", y = "log(MONTHS)", title = "Distribution of log(months) by Systemic Treatment") +
   theme_minimal()
 
 data_mutated %>%
   ggplot(aes(x = RACE, y = log(MONTHS))) +
   geom_violin(width = 0.8, alpha = 0.5, fill = "lightblue") +
   geom_boxplot(width = 0.1, alpha = 0.2) +
-  labs(x = "RACE", y = "log(MONTHS)", title = "Distribution of log(MONTHS) by Race Group") +
+  labs(x = "RACE", y = "log(MONTHS)", title = "Distribution of log(months) by Race Group") +
   theme_minimal()
 
 data_mutated %>% 

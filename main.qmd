@@ -666,6 +666,57 @@ Unfortunately, it seems that while the average of the C-S residuals are consiste
 
 ## COX/PH Model
 
+### Checking potential violations of PH assumptions across groups.
+
+```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
+# PH Assumption Check (Smoker)
+km_smoker_active <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+                            subset = (SMOKER == "Active"))
+km_smoker_former <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+                            subset = (SMOKER == "Former"))
+km_smoker_never <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+                            subset = (SMOKER == "Never"))
+
+tibble(time = c(km_smoker_active$time, km_smoker_former$time, km_smoker_never$time),
+       surv = c(km_smoker_active$surv, km_smoker_former$surv, km_smoker_never$surv),
+       group = c(rep("Active", length(km_smoker_active$time)), 
+                 rep("Former", length(km_smoker_former$time)),
+                 rep("Never", length(km_smoker_never$time)))
+       ) %>% 
+  ggplot(aes(x = log(time), y = log(-log(surv)), 
+             colour = factor(group), group = group)) +
+  geom_step() +
+  labs(x = "Log Survival Time",
+       y = "Log Cummulative Hazard",
+       colour = "Smoker Status",
+       )
+```
+
+We see that there's quite a significant violation of the proportional hazard assumption with respect to the smoker status. We see that the log cumulative hazard line crosses with each other which signify that the proportional hazard assumption is violated.
+
+```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
+# PH Assumption Check (Sex)
+km_sex_male <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+                            subset = (SEX == "Male"))
+km_sex_female <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
+                            subset = (SEX == "Female"))
+
+tibble(time = c(km_sex_male$time, km_sex_female$time),
+       surv = c(km_sex_male$surv, km_sex_female$surv),
+       group = c(rep("Male", length(km_sex_male$time)), 
+                 rep("Female", length(km_sex_female$time)))
+       ) %>% 
+  ggplot(aes(x = log(time), y = log(-log(surv)), 
+             colour = factor(group), group = group)) +
+  geom_step() +
+  labs(x = "Log Survival Time",
+       y = "Log Cummulative Hazard",
+       colour = "Sex",
+       )
+```
+
+Similarly to the previous graph, we observe that the proportional hazard assumption appears to be broken as well with respect to the patients' sex. However, it seems that the violation was not too severe which could somewhat suggest that the proportional hazard was not violated. In relation to both of these observations, we might want to stratify with respect to both smoker status and sex.
+
 ### Fitting COX models
 
 ```{r}
@@ -673,171 +724,113 @@ data_mutated <- data_mutated %>%
   mutate(SYSTEMIC_TREATMENT = factor(SYSTEMIC_TREATMENT))
 ```
 
-
 ```{r}
-model_cox_all_predictors <- coxph(Surv(MONTHS, STATUS) ~ .,
-                  data= data_mutated[, -1])
-summary(model_cox_all_predictors)
+# Model 1: Include ALL variables of interest
+model_cox_1 <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED +
+                                    SEX + MSI_SCORE + SMOKER,
+                  data= data_mutated)
+summary(model_cox_1)
 ```
 
 Note that the estimated coefficients does not really make sense in this model. Some coefficients have value of >10 which does not make sense in an exponential model.
 
 ```{r}
-# remove predictors with p-value > 0.05 - removed SEX  
-model_cox_2 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
-                       SYSTEMIC_TREATMENT + INTRAVESICAL_TREATMENT + 
-                       SPECIMEN_STAGE + TUMOR_PURITY,
+# Model 2: Simplified Model
+# Remove MSI Score
+model_cox_2 <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED +
+                       SEX + SMOKER,
                   data=data_mutated)
 summary(model_cox_2)
 ```
 
 ```{r}
-# try removing MSI_score
-model_cox_3 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
-                       SYSTEMIC_TREATMENT + SPECIMEN_STAGE + TUMOR_PURITY,
+# Model 3: Simplified Model
+# Remove Smoker History 
+model_cox_3 <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED +
+                       SEX,
                   data=data_mutated)
 summary(model_cox_3)
 ```
 
 ```{r}
-# try removing MSI_score
-model_cox_4 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + TUMOR_PURITY,
+# Model 4: Simplified Model
+# Remove Sex 
+model_cox_4 <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED,
                   data=data_mutated)
-
 summary(model_cox_4)
-```
-
-```{r}
-# try removing MSI_score
-model_cox_5 <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT,
-                  data=data_mutated)
-
-summary(model_cox_5)
 ```
 
 ### Choose Best Model 
 
 ```{r}
 lr_summary_cox <- 
-  tibble(model=c(1, 2, 3, 4, 5, 5),
-         n_param = c(23, 11, 8, 3, 2, 2),
-         loglik = c(model_cox_all_predictors$loglik[2], 
+  tibble(model=c(1, 2, 3, 4),
+         n_param = c(6, 5, 3, 2),
+         loglik = c(model_cox_1$loglik[2], 
                     model_cox_2$loglik[2], 
                     model_cox_3$loglik[2], 
-                    model_cox_4$loglik[2], 
-                    model_cox_5$loglik[2], 
-                    model_cox_5$loglik[2]),
-         CompToModel=c(NA, 1, 2, 3, 4, 3),
+                    model_cox_4$loglik[2]),
+         CompToModel=c(NA, 1, 2, 3),
          obsLRstat=c(NA,
-                     -2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),
-                     -2*(model_cox_3$loglik[2]-model_cox_2$loglik[2]),
-                     -2*(model_cox_4$loglik[2]-model_cox_3$loglik[2]),
-                     -2*(model_cox_5$loglik[2]-model_cox_4$loglik[2]),
-                     -2*(model_cox_5$loglik[2]-model_cox_3$loglik[2])),
-         df_for_comp = c(NA, 23-11, 11-8, 8-3, 3-2, 8-2),
+                     2*(model_cox_1$loglik[2] - model_cox_2$loglik[2]),
+                     2*(model_cox_2$loglik[2] - model_cox_3$loglik[2]),
+                     2*(model_cox_4$loglik[2] - model_cox_3$loglik[2])),
+         df_for_comp = c(NA, 6-5, 5-3, 3-2),
          pvalue = c(NA,
-                    pchisq(-2*(model_cox_2$loglik[2]-model_cox_all_predictors$loglik[2]),
-                           df= 12, lower.tail=FALSE),
-                    pchisq(-2*(model_cox_3$loglik[2]-model_cox_2$loglik[2]),
-                           df= 3, lower.tail=FALSE),
-                    pchisq(-2*(model_cox_4$loglik[2]-model_cox_3$loglik[2]),
-                           df= 5, lower.tail=FALSE),
-                    pchisq(-2*(model_cox_5$loglik[2]-model_cox_4$loglik[2]),
-                           df= 1, lower.tail=FALSE),
-                    pchisq(-2*(model_cox_5$loglik[2]-model_cox_3$loglik[2]),
-                           df= 6, lower.tail=FALSE)))
+                    pchisq(2*(model_cox_1$loglik[2] - model_cox_2$loglik[2]),
+                           df= 6-2, lower.tail=FALSE),
+                    pchisq(2*(model_cox_2$loglik[2] - model_cox_3$loglik[2]),
+                           df= 5-3, lower.tail=FALSE),
+                    pchisq(2*(model_cox_3$loglik[2] - model_cox_4$loglik[2]),
+                           df= 3-2, lower.tail=FALSE)))
 
 kable(lr_summary_cox)
 ```
 
-Based on the Likelihood Ratio Test, we would likely consider Model 3 or Model 5. Model 1 does not make sense in its modelling. Model 2 does not seem significant enough, suggesting Model 3 would be sufficient. The idea is consistent when comparing Model 3 and 4. 
-
-However, note that Model 4 does not seem to be significant enough when compared with Model 5. When testing Model 3 and Model 5, however, we see that Model 3 is indeed chosen.
-
-**Therefore, we should use our third model, which includes age at diagnosis, mutation count, specimen stage and tumor purity as our predictors.**
-
-
+Similar approaches were taken to compare the Cox PH models as the AFT models. Based on the Likelihood Ratio Tests, it seems that Model 2 seems to be best to model our data. Our final model would then include the covariates of mutation count, fraction genome altered, sex, and smoker status.
 
 ```{r}
 # Proportion of Individuals Censored
 mean(data_mutated$STATUS)
 ```
 
+The data has a relatively large portion of its data censored with approximately 30% censored. Hence, we would expect the residuals to have an inflated count near zero but would likely be symmetrical.
+
 ### PH assumption check
 
-```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
-# PH Assumption Check
-km_spec_stg1 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SPECIMEN_STAGE == 1))
-km_spec_stg2 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SPECIMEN_STAGE == 2))
-km_spec_stg3 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SPECIMEN_STAGE == 3))
-km_spec_stg4 <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SPECIMEN_STAGE == 4))
-
-tibble(time = c(km_spec_stg1$time, km_spec_stg2$time, km_spec_stg3$time, km_spec_stg4$time),
-       surv = c(km_spec_stg1$surv, km_spec_stg2$surv, km_spec_stg3$surv, km_spec_stg4$surv),
-       group = c(rep(1, length(km_spec_stg1$time)), 
-                 rep(2, length(km_spec_stg2$time)),
-                 rep(3, length(km_spec_stg3$time)),
-                 rep(4, length(km_spec_stg4$time)))
-       ) %>% 
-  ggplot(aes(x = log(time), y = log(-log(surv)), 
-             colour = factor(group), group = group)) +
-  geom_step() +
-  labs(x = "Log Survival Time",
-       y = "Log Cummulative Hazard",
-       colour = "Specimen Stage",
-       )
-```
-Note that the PH assumption seems to be violated here. Stratify based on specimen stage then.
-
-```{r, warning=FALSE, fig.width= 12, fig.height=4.5, fig.align='center'}
-# PH Assumption Check
-km_naive <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SYSTEMIC_TREATMENT == "Naive"))
-km_chemo <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SYSTEMIC_TREATMENT == "Chemotherapy"))
-km_immuno <- survfit(Surv(MONTHS, STATUS) ~ 1, data=data_mutated,
-              subset = (SYSTEMIC_TREATMENT == "Immunotherapy"))
-
-tibble(time = c(km_naive$time, km_chemo$time, km_immuno$time),
-       surv = c(km_naive$surv, km_chemo$surv, km_immuno$surv),
-       group = c(rep("Naive", length(km_naive$time)), 
-                 rep("Chemo", length(km_chemo$time)),
-                 rep("Immuno", length(km_immuno$time)))
-       ) %>% 
-  ggplot(aes(x = log(time), y = log(-log(surv)), 
-             colour = group, group = group)) +
-  geom_step() +
-  labs(x = "Log Survival Time",
-       y = "Log Cummulative Hazard",
-       colour = "Systemic Treatment Groups",
-       )
-```
-
-Seems good for systemic treatment groups. Note that immunotherapy seems missing due to limited sample size.
+According to the previous check, the proportional hazard assumption appeared to be violated with respect to both smoker and sex. Violations were much more severe for smoker status, so we are going to focus on stratifying over smoker status in this case.
 
 ```{r}
-# Stratify Model 3 on Specimen Stage
-model_cox_3_strata <- coxph(Surv(MONTHS, STATUS) ~ AGE_AT_DX + MUTATION_COUNT + 
-                              SYSTEMIC_TREATMENT + strata(SPECIMEN_STAGE) + 
-                              TUMOR_PURITY,
+# Stratify Model 2 on Smoker Status
+model_cox_1_strata <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED +
+                              SEX + strata(SMOKER),
                             data=data_mutated)
 
-summary(model_cox_3_strata)
+summary(model_cox_1_strata)
 ```
 
 ```{r}
-cox.resid <- residuals(model_cox_3_strata, type = "deviance")
+# Stratify Model 2 on both Smoker and Sex
+model_cox_2_strata <- coxph(Surv(MONTHS, STATUS) ~ MUTATION_COUNT + FRACTION_GENOME_ALTERED +
+                              strata(SEX) + strata(SMOKER),
+                            data=data_mutated)
 
-# MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER
+summary(model_cox_2_strata)
+```
+
+In this final model, both mutation count and fraction genome altered appear to be statistically significant to predicting hazard of death of bladder cancer patients.
+
+```{r}
+# Residual Analysis for Model 2
+
+cox.resid <- residuals(model_cox_2, type = "deviance")
+
+# MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED + SMOKER + SEX
 
 # Plot residuals over covariate MSI Score
-fig.res1 <- tibble(AGE_AT_DX = data_mutated$AGE_AT_DX, 
+fig.res1 <- tibble(MSI_SCORE = data_mutated$MSI_SCORE, 
                     residuals = cox.resid) %>% 
-  ggplot(aes(x = AGE_AT_DX, y = residuals)) +
+  ggplot(aes(x = MSI_SCORE, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_point()
 
@@ -849,44 +842,120 @@ fig.res2 <- tibble(MUTATION_COUNT = data_mutated$MUTATION_COUNT,
   geom_point()
 
 # Plot residuals over covariate Fraction Genome Altered
-fig.res3 <- tibble(SYSTEMIC_TREATMENT = data_mutated$SYSTEMIC_TREATMENT, 
+fig.res3 <- tibble(FRACTION_GENOME_ALTERED = data_mutated$FRACTION_GENOME_ALTERED, 
                     residuals = cox.resid) %>% 
-  ggplot(aes(x = SYSTEMIC_TREATMENT, y = residuals)) +
+  ggplot(aes(x = FRACTION_GENOME_ALTERED, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point()
+
+# Plot residuals over covariate Smoker Status
+fig.res4 <- tibble(SMOKER = data_mutated$SMOKER, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = SMOKER, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_boxplot()
+
+# Plot residuals over covariate Sex
+fig.res5 <- tibble(SEX = data_mutated$SEX, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = SEX, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_boxplot()
 
 # Plot with risk score
-fig.res4 <- tibble(risk.score = predict(model_cox_3_strata), 
+fig.res6 <- tibble(risk.score = predict(model_cox_2), 
                     residuals = cox.resid) %>% 
   ggplot(aes(x = risk.score, y = residuals)) +
   geom_hline(yintercept = 0, linetype = 2) +
   geom_point()
 
 # Plot with the Normal Q-Q Plot
-fig.res6 <- tibble(residuals = cox.resid) %>% 
+fig.res7 <- tibble(residuals = cox.resid) %>% 
   ggplot(aes(x = residuals)) +
   geom_histogram(binwidth = 0.5)
   
 ggarrange(fig.res1, fig.res2, fig.res3,
-          fig.res4, fig.res6, ncol = 3, nrow = 2)
+          fig.res4, fig.res5, fig.res6,
+          fig.res7, ncol = 3, nrow = 3)
 
 qqnorm(cox.resid)
 abline(0, 1, lty = 2)
 ```
 
-### obtain performance amongst different specimen stages amongst chemotherapy patients with all other median valued covariates
+```{r}
+# Residual Analysis for Model 2 (Stratified on Sex and Smoker Status)
+
+cox.resid <- residuals(model_cox_2_strata, type = "deviance")
+
+# MSI_SCORE + MUTATION_COUNT + FRACTION_GENOME_ALTERED
+
+# Plot residuals over covariate MSI Score
+fig.res1 <- tibble(MSI_SCORE = data_mutated$MSI_SCORE, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = MSI_SCORE, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point()
+
+# Plot residuals over covariate Mutation Count
+fig.res2 <- tibble(MUTATION_COUNT = data_mutated$MUTATION_COUNT, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = MUTATION_COUNT, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point()
+
+# Plot residuals over covariate Fraction Genome Altered
+fig.res3 <- tibble(FRACTION_GENOME_ALTERED = data_mutated$FRACTION_GENOME_ALTERED, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = FRACTION_GENOME_ALTERED, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point()
+
+# Plot residuals over covariate Smoker Status
+fig.res4 <- tibble(SMOKER = data_mutated$SMOKER, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = SMOKER, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_boxplot()
+
+# Plot residuals over covariate Sex
+fig.res5 <- tibble(SEX = data_mutated$SEX, 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = SEX, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_boxplot()
+
+# Plot with risk score
+fig.res6 <- tibble(risk.score = predict(model_cox_2_strata), 
+                    residuals = cox.resid) %>% 
+  ggplot(aes(x = risk.score, y = residuals)) +
+  geom_hline(yintercept = 0, linetype = 2) +
+  geom_point()
+
+# Plot with the Normal Q-Q Plot
+fig.res7 <- tibble(residuals = cox.resid) %>% 
+  ggplot(aes(x = residuals)) +
+  geom_histogram(binwidth = 0.5)
+  
+ggarrange(fig.res1, fig.res2, fig.res3,
+          fig.res4, fig.res5, fig.res6,
+          fig.res7, ncol = 3, nrow = 3)
+
+qqnorm(cox.resid)
+abline(0, 1, lty = 2)
+```
+
+### Obtain performance amongst different smoker status of male patients with all other median valued covariates
 
 ```{r}
 newdata <- data.frame(
-  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 4),
-  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 4),
-  SYSTEMIC_TREATMENT = rep("Chemotherapy", 4),
-  SPECIMEN_STAGE = factor(c(1, 2, 3, 4), levels = levels(data_mutated$SPECIMEN_STAGE)),
-  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 4)
+  FRACTION_GENOME_ALTERED = rep(median(data_mutated$FRACTION_GENOME_ALTERED), 3),
+  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 3),
+  SEX = rep("Male", 3),
+  SMOKER = c("Active", "Former", "Never")
 )
 
 # Use survfit to compute survival curves
-sf_cox <- survfit(model_cox_3_strata, newdata = newdata, data = data_mutated)
+sf_cox <- survfit(model_cox_2_strata, newdata = newdata, data = data_mutated)
 
 # Plot survival curves using ggsurvplot
 ggsurvplot(sf_cox, 
@@ -894,37 +963,60 @@ ggsurvplot(sf_cox,
            censor.shape = "+",      # Censor symbol
            risk.table = FALSE,      # Don't show the risk table
            legend.title = "",       # No title for legend
-           legend.labs = c(1, 2, 3, 4), # Labels for the survival curves
+           legend.labs = c("Active", "Former", "Never"), # Labels for the survival curves
            title = "Estimated Survival Curves for each Specimen stage") # Plot title
-
 ```
-### obtain performance for different systemic treatments on patients with median values of other covariates 
+
+### Obtain performance for different sex groups on patients who are active smokers with median values of other covariates 
  
 ```{r}
-# Create newdata for SYSTEMIC_TREATMENT
 newdata <- data.frame(
-  AGE_AT_DX = rep(median(data_mutated$AGE_AT_DX), 3),
-  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 3),
-  SYSTEMIC_TREATMENT = factor(c("Naive", "Chemotherapy", "Immunotherapy"),
-                              levels = levels(data_mutated$SYSTEMIC_TREATMENT)),
-  SPECIMEN_STAGE = factor(rep(3, 3), levels = levels(data_mutated$SPECIMEN_STAGE)),
-  TUMOR_PURITY = rep(median(data_mutated$TUMOR_PURITY), 3)
+  FRACTION_GENOME_ALTERED = rep(median(data_mutated$FRACTION_GENOME_ALTERED), 2),
+  MUTATION_COUNT = rep(median(data_mutated$MUTATION_COUNT), 2),
+  SEX = c("Male", "Female"),
+  SMOKER = rep("Active", 2)
 )
 
-# Compute survival curves
-sf_cox <- survfit(model_cox_3_strata, newdata = newdata, data = data_mutated)
+# Use survfit to compute survival curves
+sf_cox <- survfit(model_cox_2_strata, newdata = newdata, data = data_mutated)
 
-# Plot survival curves
+# Plot survival curves using ggsurvplot
 ggsurvplot(sf_cox, 
-           conf.int = FALSE,        
-           censor.shape = "+",      
-           risk.table = FALSE,      
-           legend.title = "Systemic Treatment", 
-           legend.labs = c("Naive", "Chemotherapy", "Immunotherapy"),
-           title = "Estimated Survival Curves for Systemic Treatments")
+           conf.int = FALSE,        # No confidence intervals
+           censor.shape = "+",      # Censor symbol
+           risk.table = FALSE,      # Don't show the risk table
+           legend.title = "",       # No title for legend
+           legend.labs = c("Male", "Female"), # Labels for the survival curves
+           title = "Estimated Survival Curves for each Sex Group") # Plot title
 ```
 
+```{r}
+newdata <- data.frame(
+  FRACTION_GENOME_ALTERED = median(data_mutated$FRACTION_GENOME_ALTERED),
+  MUTATION_COUNT = median(data_mutated$MUTATION_COUNT),
+  SMOKER = "Active"
+)
 
+fit.strat.cumHaz <- survfit(model_cox_2_strata, type = "aalen",
+                            new.data = data.frame(
+                              FRACTION_GENOME_ALTERED = median(data_mutated$FRACTION_GENOME_ALTERED),
+                              MUTATION_COUNT = median(data_mutated$MUTATION_COUNT))
+                            ) %>% 
+  summary()
 
+temp <- tibble(time = fit.strat.cumHaz$time,
+               strata = fit.strat.cumHaz$strata,
+               surv = fit.strat.cumHaz$surv,
+               cumhaz = fit.strat.cumHaz$cumhaz)
+
+temp %>% 
+  ggplot(aes(x = log(time), y = log(cumhaz), color = strata, lty = strata)) +
+  geom_step() +
+  xlab("log(t)") +
+  ylab("log H(t)") +
+  theme(legend.position = "right")
+```
+
+Looking at the plot above, we can see that the proportional hazard assumption is indeed violated.
 
 

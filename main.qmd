@@ -112,9 +112,9 @@ range(data_mutated$FRACTION_GENOME_ALTERED)
 
 ```
 
-### Fitting AFT models
+## Fitting AFT models
 
-## Exploring Different Predictors (EDA) 
+### Exploring Different Predictors (EDA) 
 
 ```{r}
 # Visualize scatter plots for individual covariates
@@ -275,22 +275,22 @@ ggsurvplot(km_fit_smoker, data = data_mutated,
            legend.title = "Smoking Status",
            legend.labs = c("Active", "Former", "Never"))
 
-# # 3. Mutation count
-# data_mutated$MUTATION_COUNT_QUARTILE <- cut(
-#   data_mutated$MUTATION_COUNT, 
-#   breaks = quantile(data_mutated$MUTATION_COUNT, probs = seq(0, 1, 0.25), na.rm = TRUE),
-#   include.lowest = TRUE,
-#   labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)")
-# )
-# km_fit <- survfit(Surv(MONTHS, STATUS) ~ MUTATION_COUNT_QUARTILE, data = data_mutated)
-# 
-# # Plot Kaplan-Meier curves
-# ggsurvplot(km_fit, data = data_mutated,
-#            ggtheme = theme_minimal(),
-#            title = "Kaplan-Meier Curve by Mutation Count Quartiles",
-#            legend.title = "Mutation Count Quartile",
-#            legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"))
-# 
+# 3. Mutation count
+data_mutated$MUTATION_COUNT_QUARTILE <- cut(
+  data_mutated$MUTATION_COUNT, 
+  breaks = quantile(data_mutated$MUTATION_COUNT, probs = seq(0, 1, 0.25), na.rm = TRUE),
+  include.lowest = TRUE,
+  labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)")
+)
+km_fit <- survfit(Surv(MONTHS, STATUS) ~ MUTATION_COUNT_QUARTILE, data = data_mutated)
+
+# Plot Kaplan-Meier curves
+ggsurvplot(km_fit, data = data_mutated,
+           ggtheme = theme_minimal(),
+           title = "Kaplan-Meier Curve by Mutation Count Quartiles",
+           legend.title = "Mutation Count Quartile",
+           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"))
+
 
 # 4. Fraction of Genome Altered
 data_mutated$FRACTION_GENOME_QUARTILE <- cut(
@@ -330,11 +330,18 @@ ggsurvplot(km_fit, data = data_mutated,
 
 ```
 
-The active smoker seem to have a lower survival probability at a given time comparing to the two other groups. 
-Female seem to have a lower survival probability at a given time compare to male.
+- Sex: two curves are different, but relatively close together, and they overlap at the beginning and around 60 months. Overall, females seem to have a higher survival probability compared to male on average but we need more evidence.
+
+- Smoking status: the three curves are relatively close together at the very beginning. Overall, people who never smoked seem to have a higher survival probability compared to people who are active smokers, or people who are former smokers. Active and former smokers seem to have relatively similar survival experience.
+
+- Mutation count: it seems like survival probability increases as mutation count increases, though the survival distribution of quartile 1, 2, and 3 are relatively close together and hard to observe.
+
+- Fraction of genome altered: it seems like the group with the lowest fraction of genome altered (quartile 1) experienced  higher survival probability. It seems like survival probability decreases as the fraction of genome altered increases. However, the other 3 groups (quartile 2, 3, 4), the survival distribution have relatively small differences and do across with each other.
+
+- MSI score: it seems like the group with the lowest MSI score (quartile 1) experienced  higher survival probability. It seems like survival probability decreases as the MSI score increases. However, the other 3 groups (quartile 2, 3, 4), the survival distribution have relatively small differences especially at the beginning
 
 
-## Comparing Different AFT Model Fit
+### Comparing Different AFT Model Fit
 
 ```{r}
 fit.weib <- survreg(Surv(MONTHS, STATUS)~1, data=data_mutated, dist='weibull') 

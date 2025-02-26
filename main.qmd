@@ -109,6 +109,7 @@ head(data_mutated)
 range(data_mutated$MSI_SCORE)
 range(data_mutated$MUTATION_COUNT)
 range(data_mutated$FRACTION_GENOME_ALTERED)
+sum(data_mutated$AGE_AT_DX ==0)
 
 ```
 
@@ -266,33 +267,53 @@ print(combined_plot)
 km_fit <- survfit(Surv(MONTHS, STATUS) ~ SEX, data = data_mutated)
 ggsurvplot(km_fit, data = data_mutated, 
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by Sex",
+           title = "KM Curve by Sex",
            legend.title = "Sex",
-           legend.labs = c("Female.", "Male"))
+           legend.labs = c("Female.", "Male"), 
+                     font.legend = 16, 
+  legend = c(0.3, 0.3),
+
+ font.title = 16, 
+ font.x = 16, 
+ font.y = 16, )
 
 # 2. Smoker History
 km_fit_smoker <- survfit(Surv(MONTHS, STATUS) ~ SMOKER, data = data_mutated)
 ggsurvplot(km_fit_smoker, data = data_mutated, 
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by Smoking Status",
+           title = "KM Curve by Smoking Status",
            legend.title = "Smoking Status",
-           legend.labs = c("Active", "Former", "Never"))
+           legend.labs = c("Active", "Former", "Never"), 
+                     font.legend = 16, 
+  legend = c(0.3, 0.3),
 
-# # 3. Mutation count
-# data_mutated$MUTATION_COUNT_QUARTILE <- cut(
-#   data_mutated$MUTATION_COUNT, 
-#   breaks = quantile(data_mutated$MUTATION_COUNT, probs = seq(0, 1, 0.25), na.rm = TRUE),
-#   include.lowest = TRUE,
-#   labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)")
-# )
-# km_fit <- survfit(Surv(MONTHS, STATUS) ~ MUTATION_COUNT_QUARTILE, data = data_mutated)
-# 
-# # Plot Kaplan-Meier curves
-# ggsurvplot(km_fit, data = data_mutated,
-#            ggtheme = theme_minimal(),
-#            title = "Kaplan-Meier Curve by Mutation Count Quartiles",
-#            legend.title = "Mutation Count Quartile",
-#            legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"))
+ font.title = 16, 
+ font.x = 16, 
+ font.y = 16, 
+ )
+
+# 3. Mutation count
+data_mutated$MUTATION_COUNT_QUARTILE <- cut(
+  data_mutated$MUTATION_COUNT,
+  breaks = quantile(data_mutated$MUTATION_COUNT, probs = seq(0, 1, 0.25), na.rm = TRUE),
+  include.lowest = TRUE,
+  labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)")
+)
+km_fit <- survfit(Surv(MONTHS, STATUS) ~ MUTATION_COUNT_QUARTILE, data = data_mutated)
+
+# Plot Kaplan-Meier curves
+ggsurvplot(km_fit, data = data_mutated,
+           ggtheme = theme_minimal(),
+           title = "KM Curve by Mutation Count Quartiles",
+           legend.title = "Mutation Count Quartile",
+           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"),
+           
+                     font.legend = 16, 
+  legend = c(0.3, 0.3),
+ font.title = 16, 
+ font.x = 16, 
+ font.y = 16, 
+ )
 # 
 
 # 4. Fraction of Genome Altered
@@ -308,9 +329,17 @@ km_fit <- survfit(Surv(MONTHS, STATUS) ~ FRACTION_GENOME_QUARTILE, data = data_m
 # Plot Kaplan-Meier curves
 ggsurvplot(km_fit, data = data_mutated,
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by Fraction Genome Altered Quartiles",
+           title = "KM Curve by Fraction Genome Altered Quartiles",
            legend.title = "Genome Altered Quartile",
-           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"))# Break MSI_SCORE into quartiles
+           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"),
+           
+                     font.legend = 16, 
+  legend = c(0.3, 0.3),
+
+ font.title = 16, 
+ font.x = 16, 
+ font.y = 16, 
+                     )# Break MSI_SCORE into quartiles
 
 # 5. MSI Score
 data_mutated$MSI_SCORE_QUARTILE <- cut(
@@ -320,22 +349,41 @@ data_mutated$MSI_SCORE_QUARTILE <- cut(
   labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)")
 )
 
+```
+```{r}
+
 # Fit Kaplan-Meier model by quartile
 km_fit <- survfit(Surv(MONTHS, STATUS) ~ MSI_SCORE_QUARTILE, data = data_mutated)
 
 # Plot Kaplan-Meier curves
 ggsurvplot(km_fit, data = data_mutated,
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by MSI Score Quartiles",
+           title = "KM Curve by MSI Score Quartiles",
            legend.title = "MSI Score Quartile",
-           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"))
+           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"), 
+            font.legend = 16, 
+  legend = c(0.3, 0.3),
 
+ font.title = 16, 
+ font.x = 16, 
+ font.y = 16, 
+ theme = theme(
+               plot.title = element_text(hjust = 5, vjust = 10),  # Center the title horizontally, 
+               plot.margin = margin(10, 10, 5, 10)
+           )
+            )
+
+
+```
+
+```{r}
 # 6. Age at Diagnosis
 data_mutated$AGE_DX_QUARTILE <- cut(
   data_mutated$AGE_AT_DX, 
   breaks = quantile(data_mutated$AGE_AT_DX, probs = seq(0, 1, 0.25), na.rm = TRUE),
   include.lowest = TRUE,
   labels = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)")
+  
 )
 
 # Fit Kaplan-Meier model by quartile
@@ -344,9 +392,16 @@ km_fit <- survfit(Surv(MONTHS, STATUS) ~ AGE_DX_QUARTILE, data = data_mutated)
 # Plot Kaplan-Meier curves
 ggsurvplot(km_fit, data = data_mutated,
            ggtheme = theme_minimal(),
-           title = "Kaplan-Meier Curve by Age at Diagnosis Quartiles",
+           title = "KM Curve by Age at Diagnosis Quartiles",
            legend.title = "Age at Diagnosis",
-           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"))
+           legend.labs = c("Q1 (Lowest)", "Q2", "Q3", "Q4 (Highest)"), 
+ font.legend = 16, 
+  legend = c(0.3, 0.3),
+ font.title = 16, 
+ font.x = 16, 
+ font.y = 16
+           
+           )
 ```
 
 The active smoker seem to have a lower survival probability at a given time comparing to the two other groups. 
